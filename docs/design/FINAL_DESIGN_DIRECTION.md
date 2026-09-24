@@ -46,13 +46,26 @@ The confirmed direction includes:
 
 Geometry must support hierarchy rather than decorate empty space.
 
+## Color and Theme Strategy Reference
+
+The selected Editorial Engineering direction is informed by a visual reference characterized by:
+
+- dark-dominant presentation
+- tech-blue / cyan accents
+- restrained gold accent
+- premium modern branding tone
+- clean structured composition
+
+Dark mode is the primary identity. Light mode is secondary and optional. The portfolio must be designed dark-first; any future light mode should feel like a coherent extension of the same identity rather than a separate visual system.
+
 ## Typography Direction
 
-- Display reference: Cinzel-style serif typography.
-- Editorial reference: Cormorant Garamond-style serif typography.
-- UI / technical typography: clean modern sans-serif.
+- Sora is discarded and must not be part of the selected visual system.
+- Display / brand: Cinzel for `CARLOS REYES`, major headings, selected project titles, section titles, and restrained index treatments.
+- Editorial: Cormorant Garamond for descriptions, selected introductory copy, short statements, About-page moments, and selective secondary typography.
+- Functional / UI: a neutral system sans-serif stack may be used for technical metadata, navigation, buttons, and technology labels during prototyping.
 
-Final font families are not selected. Cinzel and Cormorant Garamond remain references until the typography-system checkpoint confirms exact fonts. Do not download or implement fonts yet.
+The Cinzel and Cormorant Garamond pairing is approved as the primary typography direction. Exact font files, sizes, weights, tracking, line heights, and responsive scale are not finalized. Do not download or implement fonts yet.
 
 ## Hero
 
@@ -199,4 +212,3 @@ The next checkpoint must define and approve:
 - navigation behavior
 
 Implementation begins only after the visual system is approved.
-
