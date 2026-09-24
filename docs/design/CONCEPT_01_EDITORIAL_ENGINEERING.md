@@ -5,10 +5,10 @@
 - Status: `SELECTED`
 - Selection: `APPROVED VISUAL DIRECTION`
 - Implementation: `NOT IMPLEMENTED`
-- Comparison required against: Concept 02 — Technical Monolith; Concept 03 — Cinematic Systems
-- No visual concept is approved yet.
+- Decision date: `24 September 2026`
+- Primary visual direction: `Concept 01 — Editorial Engineering`
 
-Carlos explicitly selected Concept 01 on 24 September 2026. This document describes the approved visual direction for the next design-system phase only; it does not define final design tokens, implementation details, components, or production-ready copy.
+Carlos explicitly selected Concept 01 on 24 September 2026. Concepts 02 and 03 remain historical alternatives and are not selected. This document describes the approved visual direction; it does not define final design tokens, implementation details, components, or production-ready copy.
 
 ## Purpose
 

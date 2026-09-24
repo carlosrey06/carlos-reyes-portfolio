@@ -7,9 +7,9 @@
 - Spacing: `WORKING SYSTEM APPROVED`
 - Grid: `WORKING SYSTEM APPROVED`
 - Implementation: `NOT IMPLEMENTED`
-- Next checkpoint: `2.3C — Component Language, Navigation, Project Imagery & Motion System`
+- Next: `Phase 3 — Implementation / Hero v1 — mobile-first`
 
-These are approved working values for visual prototyping. Small adjustments may still be made during visual testing. This document does not implement UI, download fonts, or define final CSS tokens.
+These are approved working values for Hero v1 and visual prototyping. Small adjustments may still be made during visual testing. This document does not implement UI, download fonts, or define final CSS tokens.
 
 ## Typography Families
 
@@ -334,4 +334,3 @@ Desired contrast:
 - Cinzel: identity.
 - Cormorant Garamond: editorial personality.
 - System sans: functionality and clarity.
-

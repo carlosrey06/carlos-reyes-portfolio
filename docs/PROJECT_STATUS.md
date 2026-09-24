@@ -84,11 +84,13 @@ El build base pasó correctamente el 24 de septiembre de 2026 mediante `pnpm bui
 
 ## Current Checkpoint
 
-Checkpoint 1.5 — Information Architecture
+Phase 3 — Implementation
+
+First implementation checkpoint: `3.1 — Hero v1` — mobile-first
 
 ## Next Immediate Objective
 
-Usar la arquitectura de información confirmada como base para la futura exploración visual y el diseño, sin implementar todavía UI, páginas, componentes, estilos ni rutas.
+Implementar Hero v1 con la arquitectura de información y el sistema visual aprobados, comenzando mobile-first.
 
 La home debe funcionar como un sitio de presentación profesional de alto impacto, no como un CV convertido en página web.
 
@@ -181,9 +183,18 @@ Acción de utilidad primaria: `Descargar CV`.
 
 La navegación desktop debe ser limpia y contenida. La navegación mobile requiere una composición e interacción dedicada y no debe tratarse como una versión comprimida de desktop.
 
+Nota de implementación: no inventar un asset ni una ruta para el CV. Si el PDF final todavía no está en `public/`, el CTA puede incluirse visualmente más adelante, pero no debe apuntar a un archivo falso.
+
 ## Visual Direction Status
 
-La dirección visual existente permanece como referencia de exploración, no como diseño final ni implementación aprobada:
+La dirección visual seleccionada es **Concept 01 — Editorial Engineering**.
+
+- Status: `APPROVED VISUAL DIRECTION`
+- Implementation status: `NOT STARTED`
+- Dark theme: primary and dominant
+- Light theme: secondary and optional
+- Typography: Cinzel display/brand, Cormorant Garamond editorial, system sans UI
+- Visual system: sufficiently defined for implementation
 
 - atmósfera dark / near-black
 - tipografía fuerte
@@ -204,10 +215,18 @@ Mobile es una experiencia de primer nivel. Cada propuesta futura debe diseñar i
 ## Remaining IA Decisions
 
 - Copy final de la home y de `/sobre-mi`.
-- Selección de la dirección visual entre propuestas futuras.
-- Sistema de diseño, componentes y rutas implementadas.
 - Contenido exacto del footer, contacto y enlaces públicos.
 - Detalle final de cada caso de estudio.
+- Método final de carga local/web de fuentes.
+- Valores exactos de tokens de color y validación final de contraste.
+- Navegación desktop estática vs. sticky.
+- Transición exacta del menú mobile.
+- Curvas de easing finales.
+- Assets y crops definitivos de screenshots.
+- Posible tema claro futuro.
+- Comportamiento futuro de transiciones entre páginas.
+
+Estas decisiones son de implementación/prototipado y no bloquean Hero v1.
 
 ## Previous Information Collection Sources
 

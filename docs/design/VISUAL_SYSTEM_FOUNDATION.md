@@ -276,4 +276,16 @@ Rejected patterns remain:
 - Spacing: `WORKING SYSTEM APPROVED`
 - Grid: `WORKING SYSTEM APPROVED`
 - Authoritative working specification: [Typography, Layout & Grid System](./TYPOGRAPHY_LAYOUT_SYSTEM.md)
-- Next checkpoint: `2.3C — Component Language, Navigation, Project Imagery & Motion System`
+
+### Component, Navigation, Imagery and Motion Authority
+
+The authoritative working specification for component language, navigation, project imagery, interactive states, and motion is [Component & Motion System](./COMPONENT_MOTION_SYSTEM.md).
+
+This foundation establishes the visual direction and principles. The component document defines the approved working language for those areas without implementing UI or finalizing unresolved implementation details.
+
+- Component language: `WORKING SYSTEM APPROVED`
+- Navigation visual language: `WORKING SYSTEM APPROVED`
+- Project imagery: `WORKING SYSTEM APPROVED`
+- Motion: `WORKING SYSTEM APPROVED`
+- Next phase: `Phase 3 — Implementation`
+- First implementation checkpoint: `3.1 — Hero v1 — mobile-first`

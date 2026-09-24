@@ -65,7 +65,7 @@ Dark mode is the primary identity. Light mode is secondary and optional. The por
 - Editorial: Cormorant Garamond for descriptions, selected introductory copy, short statements, About-page moments, and selective secondary typography.
 - Functional / UI: a neutral system sans-serif stack may be used for technical metadata, navigation, buttons, and technology labels during prototyping.
 
-The Cinzel and Cormorant Garamond pairing is approved as the primary typography direction. Exact font files, sizes, weights, tracking, line heights, and responsive scale are not finalized. Do not download or implement fonts yet.
+The Cinzel and Cormorant Garamond pairing is approved as the primary typography direction. The working sizes, weights, tracking, line heights, and responsive scale are defined in the typography system. Exact font files and loading strategy remain non-blocking implementation decisions. Do not download or implement fonts during documentation alignment.
 
 ## Hero
 
@@ -189,26 +189,23 @@ Do not use:
 
 Desktop and mobile are different compositions using the same visual system. Mobile must be designed intentionally, with a strong hierarchy, clear CTAs, comfortable touch targets, performant motion, and no desktop layout simply scaled down.
 
-## Next Design Checkpoint
+## Implementation Readiness Status
 
-The next phase is not implementation.
+Design-system definition is completed sufficiently for implementation.
 
-### 2.3 — Visual System Definition
+Current next phase: **Phase 3 — Implementation**
 
-The next checkpoint must define and approve:
+First implementation checkpoint: **3.1 — Hero v1 — mobile-first**
 
-- exact color palette
-- exact fonts
-- typography scale
-- spacing scale
-- content widths
-- border/rule system
-- geometry rules
-- motion tokens
-- image treatment
-- desktop layout grid
-- mobile layout grid
-- buttons / links
-- navigation behavior
+The following remain explicitly non-blocking implementation/prototyping decisions:
 
-Implementation begins only after the visual system is approved.
+- final local/web font loading method
+- exact CSS color token values and final contrast validation
+- static vs. sticky desktop navigation
+- exact mobile menu transition
+- final easing curves
+- final project screenshot assets and crops
+- possible future light theme
+- contact/footer final copy
+- case-study implementation
+- future page-transition behavior

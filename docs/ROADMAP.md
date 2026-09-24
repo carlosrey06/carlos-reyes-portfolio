@@ -17,18 +17,22 @@ Checklist vivo del proyecto. Los checkpoints describen intención y progreso act
 - [x] Checkpoint 1.1 — Crear documentación viva del proyecto
 - [x] Checkpoint 1.2 — Recopilación de información profesional
 - [x] Checkpoint 1.3 — Auditoría y verificación de experiencia, tecnologías y proyectos
+- [x] Checkpoint 1.4 — Definir posicionamiento y narrativa profesional
+- [x] Checkpoint 1.5 — Definir arquitectura de información del sitio
+- [x] Checkpoint 2.1 — Exploración visual
+- [x] Checkpoint 2.2 — Selección del concepto final: Editorial Engineering
+- [x] Checkpoint 2.3A — Color y estrategia de tema
+- [x] Checkpoint 2.3B — Tipografía, spacing y layout
+- [x] Checkpoint 2.3C — Componentes, navegación, imágenes y motion
+- [x] Checkpoint 2.4 — Implementation Readiness Review
 
 ## Current
 
-- [ ] Checkpoint 1.5 — Definir arquitectura de información del sitio
+- [ ] Phase 3 — Implementation
+- [ ] Checkpoint 3.1 — Hero v1 — mobile-first
 
 ## Pending
 
-- [ ] 1.4 — Definir posicionamiento y narrativa profesional
-- [ ] 2.x — Exploración visual y varias propuestas de diseño
-- [ ] Selección de una dirección visual antes de implementar
-- [ ] Sistema de diseño
-- [ ] Arquitectura de componentes
 - [ ] Implementación responsive/mobile-first
 - Cada propuesta visual deberá incluir evaluación móvil y desktop.
 - No se aprobará una dirección visual basándose únicamente en desktop.
@@ -54,8 +58,8 @@ Checklist vivo del proyecto. Los checkpoints describen intención y progreso act
 - [ ] Deploy
 - [ ] Revisión final
 
-### Checkpoint 1.4 — Confirmed groundwork, not complete
+### Phase 3 Entry
 
-Ya están confirmados el nombre público `Carlos Reyes`, el título `Full Stack Developer & Systems Engineer`, la frase de posicionamiento, los CTAs principales, el orden de proyectos destacados y complementarios, la estrategia de home concisa y la decisión de mover “Sobre mí” a una página dedicada. La narrativa final, el copy definitivo y el diseño todavía están pendientes.
+La identidad profesional, la arquitectura de información, la dirección visual Editorial Engineering y el sistema visual están suficientemente definidos para iniciar la implementación. El primer objetivo de Phase 3 es Hero v1 con enfoque mobile-first. El copy final y las decisiones de prototipado no bloqueantes pueden evolucionar durante la implementación.
 
 > Los checkpoints pendientes no deben tratarse como decisiones arquitectónicas definitivas. El roadmap puede evolucionar mediante decisiones explícitas.
