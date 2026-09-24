@@ -15,16 +15,16 @@ Checklist vivo del proyecto. Los checkpoints describen intención y progreso act
 - [x] Checkpoint 0.9 — Crear y conectar GitHub por SSH
 - [x] Checkpoint 1.0 — Validar build base
 - [x] Checkpoint 1.1 — Crear documentación viva del proyecto
+- [x] Checkpoint 1.2 — Recopilación de información profesional
+- [x] Checkpoint 1.3 — Auditoría y verificación de experiencia, tecnologías y proyectos
 
 ## Current
 
-- [ ] Checkpoint 1.2 — Recopilación de información profesional
+- [ ] Checkpoint 1.5 — Definir arquitectura de información del sitio
 
 ## Pending
 
-- [ ] 1.3 — Auditoría y verificación de experiencia, tecnologías y proyectos
 - [ ] 1.4 — Definir posicionamiento y narrativa profesional
-- [ ] 1.5 — Definir arquitectura de información del sitio
 - [ ] 2.x — Exploración visual y varias propuestas de diseño
 - [ ] Selección de una dirección visual antes de implementar
 - [ ] Sistema de diseño
@@ -53,5 +53,9 @@ Checklist vivo del proyecto. Los checkpoints describen intención y progreso act
 - [ ] QA
 - [ ] Deploy
 - [ ] Revisión final
+
+### Checkpoint 1.4 — Confirmed groundwork, not complete
+
+Ya están confirmados el nombre público `Carlos Reyes`, el título `Full Stack Developer & Systems Engineer`, la frase de posicionamiento, los CTAs principales, el orden de proyectos destacados y complementarios, la estrategia de home concisa y la decisión de mover “Sobre mí” a una página dedicada. La narrativa final, el copy definitivo y el diseño todavía están pendientes.
 
 > Los checkpoints pendientes no deben tratarse como decisiones arquitectónicas definitivas. El roadmap puede evolucionar mediante decisiones explícitas.

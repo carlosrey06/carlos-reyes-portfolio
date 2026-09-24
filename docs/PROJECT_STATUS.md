@@ -84,11 +84,134 @@ El build base pasó correctamente el 24 de septiembre de 2026 mediante `pnpm bui
 
 ## Current Checkpoint
 
-Checkpoint 1.2 — Professional Information Collection
+Checkpoint 1.5 — Information Architecture
 
 ## Next Immediate Objective
 
-Recopilar información profesional desde:
+Usar la arquitectura de información confirmada como base para la futura exploración visual y el diseño, sin implementar todavía UI, páginas, componentes, estilos ni rutas.
+
+La home debe funcionar como un sitio de presentación profesional de alto impacto, no como un CV convertido en página web.
+
+## Confirmed Professional Identity
+
+- Public name: `Carlos Reyes`
+- Primary title: `Full Stack Developer & Systems Engineer`
+- Primary positioning sentence: “Desarrollo aplicaciones web completas y la infraestructura necesaria para llevarlas a producción de forma segura y mantenible.”
+- Primary hero CTAs: `Ver proyectos` y `Descargar CV`
+- Contacto: presente en la navegación y al final del sitio, pero no como tercer CTA principal del hero.
+
+## Confirmed Home Information Architecture
+
+La prioridad de la home será comunicar identidad profesional, proyectos, tecnologías, experiencia resumida, capacidades de deployment/infrastructure y contacto.
+
+1. **Hero**
+   - Carlos Reyes
+   - Full Stack Developer & Systems Engineer
+   - frase de posicionamiento
+   - Ver proyectos
+   - Descargar CV
+   - presentación visual dominante y concisa
+   - sin biografía larga, inventario exhaustivo, responsabilidades laborales, ratings ni símbolos sparkle
+
+2. **Featured Work**
+   Orden fijo:
+   1. Frío Puro
+   2. Sellers
+   3. V.A.U.L.T.
+   4. ARCH
+
+   Las tarjetas priorizarán visual del proyecto, nombre, propósito conciso, tecnologías clave y estado de producción/desarrollo cuando sea útil. No reproducirán el inventario técnico completo.
+
+3. **Tech Stack**
+   Sección visualmente relevante para comunicar el ecosistema confirmado de desarrollo, con categorías como Frontend, Backend, Databases, Infrastructure / Deployment, Security / Authentication y Automation. No incluir porcentajes, barras, rankings arbitrarios ni etiquetas de seniority. Networking no debe dominar esta sección.
+
+4. **Experience**
+   La experiencia en home será compacta y mostrará Importaciones a México, Laboratorios Chontalpa, Soriana y SICCOMS con empresa, rol, fechas y un resumen breve de tecnología/contexto. Las responsabilidades extensas permanecen en el CV, que será la fuente de detalle laboral.
+
+5. **More Work**
+   Orden fijo:
+   1. P.U.L.S.E.
+   2. IMXTime
+   3. YollotDP
+   4. Cadebot L100 / MiRobot
+
+   Estos proyectos complementarios recibirán menos peso visual que Featured Work y respetarán sus restricciones de publicación y privacidad.
+
+6. **Infrastructure / Deployment**
+   Sección breve para comunicar trabajo más allá del código de aplicación: Linux / Ubuntu, SSH, Docker, Docker Compose, reverse proxies, Traefik, Nginx, PHP-FPM, DNS, Vercel, deployments, logs, health checks y backups. No mencionar Hetzner como experiencia de Carlos ni convertir esta sección en un currículum de infraestructura.
+
+7. **Final CTA / Contact**
+   Sección de cierre para contacto profesional, colaboración o conversaciones de contratación. El copy detallado queda pendiente.
+
+8. **Footer**
+   Footer mínimo con Carlos Reyes, enlaces profesionales, contacto y copyright/año si corresponde. El contenido exacto queda pendiente.
+
+## About Page Decision
+
+“Sobre mí” no ocupará una sección extensa de la home. Se reserva una página dedicada:
+
+- Ruta: `/sobre-mi`
+- Etiqueta de navegación: `Sobre mí`
+- Propósito: presentar una introducción más humana y profesional sin convertir la home en una biografía.
+
+El contenido futuro puede incluir introducción profesional, enfoque de desarrollo, combinación de desarrollo y sistemas, evolución profesional, educación, experiencia secundaria seleccionada y filosofía de trabajo. El copy final todavía no está definido.
+
+## Future Project Detail Routes
+
+La arquitectura queda preparada conceptualmente para futuras páginas de casos de estudio:
+
+- `/proyectos/frio-puro`
+- `/proyectos/sellers`
+- `/proyectos/vault`
+- `/proyectos/arch`
+
+Estas rutas son únicamente preparación arquitectónica; no están implementadas y podrán contener narrativas más profundas mientras la home permanece concisa.
+
+## Navigation
+
+Navegación primaria propuesta:
+
+- Proyectos
+- Stack
+- Experiencia
+- Sobre mí
+- Contacto
+
+Acción de utilidad primaria: `Descargar CV`.
+
+La navegación desktop debe ser limpia y contenida. La navegación mobile requiere una composición e interacción dedicada y no debe tratarse como una versión comprimida de desktop.
+
+## Visual Direction Status
+
+La dirección visual existente permanece como referencia de exploración, no como diseño final ni implementación aprobada:
+
+- atmósfera dark / near-black
+- tipografía fuerte
+- referencia display estilo Cinzel
+- referencia editorial Cormorant Garamond
+- círculos geométricos sutiles
+- ornamentos geométricos/diamante
+- líneas y divisores finos
+- partículas/neblina contenidas
+- movimiento lento y elegante
+- sensación premium tecnológica/editorial
+- símbolos `✦`, estrellas y sparkle glyphs rechazados
+
+## Mobile Requirement
+
+Mobile es una experiencia de primer nivel. Cada propuesta futura debe diseñar intencionalmente la jerarquía móvil, adaptar tipografía y composición, mantener proyectos visualmente fuertes, conservar CTAs claros, usar touch targets adecuados, mantener el motion performante y evitar escalar simplemente el layout desktop.
+
+## Remaining IA Decisions
+
+- Copy final de la home y de `/sobre-mi`.
+- Selección de la dirección visual entre propuestas futuras.
+- Sistema de diseño, componentes y rutas implementadas.
+- Contenido exacto del footer, contacto y enlaces públicos.
+- Detalle final de cada caso de estudio.
+
+## Previous Information Collection Sources
+
+La recopilación profesional ya fue completada y auditada a partir de:
 
 - CV
 - conversaciones previas
@@ -97,12 +220,12 @@ Recopilar información profesional desde:
 - documentación
 - screenshots/evidencia
 
-Después, clasificarla por:
+La información se clasificó por:
 
 - verification status
 - publication status
 
-No agregar todavía información profesional específica.
+No se implementó todavía contenido visual ni UI a partir de esta información.
 
 ## Change Log
 
