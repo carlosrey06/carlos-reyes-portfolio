@@ -271,4 +271,9 @@ Rejected patterns remain:
 
 - Status: `APPROVED FOR VISUAL SYSTEM`
 - Implementation: `NOT IMPLEMENTED`
-- Next checkpoint: `2.3B — Typography, spacing, layout grid and component primitives`
+- Typography direction: `APPROVED DIRECTION`
+- Typography scale: `WORKING SYSTEM APPROVED`
+- Spacing: `WORKING SYSTEM APPROVED`
+- Grid: `WORKING SYSTEM APPROVED`
+- Authoritative working specification: [Typography, Layout & Grid System](./TYPOGRAPHY_LAYOUT_SYSTEM.md)
+- Next checkpoint: `2.3C — Component Language, Navigation, Project Imagery & Motion System`
