@@ -126,17 +126,17 @@ Preparar una entrada por cada empleo. No inventar empleos ni información.
     - Docker Compose
     - deployments
     - server/application operations
-  fortigate:
+  FortiGate:
     - access to FortiGate administration interface
     - firewall policy configuration
     - firewall rule configuration/modification
     - connectivity troubleshooting related to rules/policies
+  FortiGate publication note: Registrar públicamente la experiencia técnica general, pero mantener los detalles operativos y de configuración interna como información privada.
   infrastructure attribution note: No atribuir a Carlos la configuración general/directa de Traefik de toda la infraestructura de Importaciones a México. Puede tener proyectos específicos dentro de la empresa donde sí configuró infraestructura propia.
   publicly mentionable projects:
-    - IMXTime
     - VAULT
     - Sellers
-    - P.U.L.S.E. (internal traceability: Price Renewer)
+    - P.U.L.S.E.
     - Frío Puro
   project note: Frío Puro fue desarrollado por Carlos durante su etapa en Importaciones a México.
   notable problems solved: MISSING
@@ -366,19 +366,22 @@ Preparar una entrada por cada proyecto. No presentar como hecho ningún proyecto
     - incidencias
     - faltas
     - reportes
-  repository: PRIVATE
-  repository name: NEEDS VERIFICATION
+  production status: PRODUCTION
+  repository: NEEDS VERIFICATION
+  repository visibility: PRIVATE
   live URL: MISSING
   screenshots/assets: MISSING
-  public/private status: Repository and internal relationship are private; public project information is restricted.
-  privacy: No asociar públicamente IMXTime con Importaciones a México. La relación real puede conservarse como evidencia interna/private.
+  public restrictions:
+    - Do not publicly associate IMXTime with Importaciones a México.
+    - Do not expose the employer/client relationship for this project.
+  internal notes: The real employer relationship is retained only as internal evidence, internal attribution and private context.
   evidence/source:
     - inventario técnico recuperado
     - commits y debugging documentados
     - confirmación directa de Carlos
   evidence location: MISSING
   verification status: CONFIRMED
-  publication status: PUBLIC WITH RESTRICTIONS
+  publication status: PUBLIC
   last verified: 24 de septiembre de 2026
 ```
 
@@ -432,12 +435,13 @@ Preparar una entrada por cada proyecto. No presentar como hecho ningún proyecto
     - audit
     - migrations
   challenges solved: MISSING
+  production status: IN DEVELOPMENT
   outcome: En desarrollo; no producción.
   repository: carlosrey06/VAULT
   repository visibility: PRIVATE
   live URL: MISSING
   screenshots/assets: MISSING
-  public/private status: PUBLIC
+  internal notes: Puede presentarse públicamente a alto nivel. No exponer detalles internos de arquitectura por defecto.
   evidence/source: La documentación técnica detallada del proyecto existe; confirmación directa de Carlos.
   evidence location: MISSING
   verification status: CONFIRMED
@@ -492,14 +496,13 @@ Preparar una entrada por cada proyecto. No presentar como hecho ningún proyecto
     - Linux / SSH
   infrastructure attribution note: La configuración de infraestructura/reverse proxy fue responsabilidad compartida. No afirmar que Carlos configuró el 100% del reverse proxy ni publicar un porcentaje exacto para esta parte.
   challenges solved: MISSING
+  production status: PRODUCTION
   outcome: Sitio operativo con mejoras/evolución todavía en desarrollo; blog funcionando actualmente.
   company: Importaciones a México
   repository: NEEDS VERIFICATION
-  canonical repository name: NEEDS VERIFICATION
   repository visibility: PRIVATE
   live URL: https://sellers.importacionesamexico.com.mx
   screenshots/assets: MISSING
-  public/private status: PUBLIC
   evidence/source: Confirmación directa de Carlos y evidencia previa del proyecto.
   evidence location: MISSING
   verification status: CONFIRMED
@@ -534,12 +537,12 @@ Preparar una entrada por cada proyecto. No presentar como hecho ningún proyecto
   architecture: MISSING
   notable technical decisions: MISSING
   challenges solved: MISSING
+  production status: PRODUCTION
   outcome: Producción; uso real en operación.
   company: Importaciones a México
   repository: MISSING
   live URL: MISSING
   screenshots/assets: MISSING
-  public/private status: La operación y los detalles internos son privados.
   public information:
     - automatización del proceso
     - validaciones
@@ -549,7 +552,7 @@ Preparar una entrada por cada proyecto. No presentar como hecho ningún proyecto
     - alertas/notificaciones
     - uso real en operación
     - Importaciones a México
-  private operational details:
+  private details:
     - tipo exacto de archivos procesados
     - estructura interna
     - volúmenes
@@ -561,7 +564,7 @@ Preparar una entrada por cada proyecto. No presentar como hecho ningún proyecto
   evidence/source: Confirmación directa de Carlos y evidencia técnica existente.
   evidence location: MISSING
   verification status: CONFIRMED
-  publication status: PUBLIC WITH PRIVATE OPERATIONAL DETAILS
+  publication status: PUBLIC
   last verified: 24 de septiembre de 2026
 ```
 
@@ -614,13 +617,13 @@ Preparar una entrada por cada proyecto. No presentar como hecho ningún proyecto
     - domain/DNS-related deployment work
     - logs / operational checks cuando correspondía
   challenges solved: MISSING
+  production status: PRODUCTION
   outcome: Producción; CMS/blog en producción.
   company/context: Proyecto desarrollado por Carlos durante su etapa en Importaciones a México.
-  repository: MISSING
+  repository: NEEDS VERIFICATION
   repository visibility: NEEDS VERIFICATION
   live URL: https://friopuro.com.mx
   screenshots/assets: MISSING
-  public/private status: PUBLIC
   evidence/source: Confirmación directa de Carlos y evidencia técnica del proyecto.
   evidence location: MISSING
   verification status: CONFIRMED
@@ -661,11 +664,13 @@ Preparar una entrada por cada proyecto. No presentar como hecho ningún proyecto
     - obligaciones / pagos programados
     - conciliación
   challenges solved: MISSING
+  production status: IN DEVELOPMENT
   outcome: En desarrollo; no presentarlo como producto comercial terminado, SaaS público o sistema con usuarios reales sin evidencia.
-  repository: Puede permanecer privado.
+  repository: NEEDS VERIFICATION
+  repository visibility: PRIVATE
   live URL: MISSING
   screenshots/assets: MISSING
-  public/private status: PUBLIC
+  internal notes: Proyecto personal en desarrollo; no presentarlo como producto comercial terminado, SaaS público o sistema con usuarios reales sin evidencia.
   evidence/source: Confirmación directa de Carlos y contexto técnico confirmado.
   evidence location: MISSING
   verification status: CONFIRMED
@@ -716,12 +721,12 @@ Preparar una entrada por cada proyecto. No presentar como hecho ningún proyecto
     - aplicaciones
     - soluciones digitales para empresas
   challenges solved: MISSING
+  production status: NEEDS VERIFICATION
   outcome: MISSING
-  repository: MISSING
+  repository: NEEDS VERIFICATION
   repository visibility: PRIVATE
   live URL: https://yollotdp.com/
   screenshots/assets: MISSING
-  public/private status: PUBLIC
   evidence/source: Confirmación directa de Carlos y sitio web público.
   evidence location: MISSING
   verification status: CONFIRMED
@@ -756,13 +761,13 @@ Preparar una entrada por cada proyecto. No presentar como hecho ningún proyecto
     - implementación de formulario
     - implementación completa de landing page
   challenges solved: MISSING
+  production status: PRODUCTION
   outcome: Producción / desplegado públicamente.
   company/context: Proyecto desarrollado durante el trabajo de Carlos en Importaciones a México.
-  repository: MISSING
-  repository visibility: MISSING
+  repository: NEEDS VERIFICATION
+  repository visibility: PRIVATE
   live URL: https://importacionesamexico.com.mx/cadebot
   screenshots/assets: MISSING
-  public/private status: PUBLIC
   project classification: COMPLEMENTARY PROJECT
   positioning note: Demuestra fundamentos de frontend, dominio directo de HTML/CSS/JS, implementación responsive, desarrollo de landing pages comerciales/producto y capacidad de construir sin depender de un framework. No posicionarlo al mismo nivel de profundidad que ARCH, V.A.U.L.T., Frío Puro, Sellers o IMXTime.
   evidence/source: Confirmación directa de Carlos y URL pública del proyecto.
@@ -797,14 +802,114 @@ Cada tecnología que finalmente pase a `CONFIRMED` debería poder asociarse al m
 
 No usar porcentajes, estrellas ni etiquetas arbitrarias como “90% experto”.
 
-- Frontend — MISSING
-- Backend — MISSING
-- Databases / ORM — MISSING
-- DevOps / Deployment — MISSING
-- Linux / Servers — MISSING
-- Infrastructure / Networking — MISSING
-- IT Support — MISSING
-- Tools / Collaboration — MISSING
+### Frontend
+
+- HTML
+- CSS
+- JavaScript
+- TypeScript
+- React
+- Next.js
+- Astro
+- Vite
+- React Router
+- Livewire
+- Tailwind CSS
+- Bootstrap
+- shadcn/ui
+- GSAP
+
+### Backend
+
+- PHP
+- Laravel
+- CodeIgniter
+- Node.js
+- Express
+- NestJS
+- Astro SSR
+- `@astrojs/node`
+- REST APIs
+
+### Databases / ORM
+
+- MySQL
+- Oracle
+- SQL
+- Drizzle ORM
+- Sequelize
+
+### Infrastructure / Deployment
+
+- Linux / Ubuntu
+- SSH
+- Docker
+- Docker Compose
+- Traefik — context-specific; direct configuration confirmed for Frío Puro, shared responsibility in Sellers and YollotDP.
+- Nginx
+- PHP-FPM
+- reverse proxies
+- domains
+- DNS
+- Vercel deployments
+- logs
+- health checks
+- backups
+- WHM / cPanel
+
+### Authentication / Security
+
+- Better Auth
+- JWT
+- RBAC
+- Zod
+- CSRF/CSP
+- CSRF
+- throttling
+- XSS sanitization
+- reCAPTCHA
+- FortiGate — Importaciones a México only; do not expose internal configuration details.
+
+### Automation
+
+- Google Apps Script
+- Google Sheets
+- Google Drive
+- Google Workspace
+- ExcelJS
+- Slack
+
+### Tooling
+
+- Git
+- GitHub
+- pnpm
+- Asana
+- Vitest
+- Playwright
+- ECharts
+- Nodemailer
+- Google Analytics
+- Meta Pixel
+- TeamViewer
+- AnyDesk
+
+### Networking — Secondary
+
+- TCP/IP
+- LAN
+- WLAN / Wi-Fi
+- DHCP
+- DNS
+- connectivity troubleshooting
+- network performance diagnosis
+- UTP cabling
+- RJ45 crimping
+- switches
+- routers
+- access points
+
+Hetzner no forma parte de las habilidades personales de Carlos y no debe presentarse como tal.
 
 ## Server Administration / Deployment
 
@@ -919,7 +1024,7 @@ Preparar una entrada por institución o programa:
   evidence/source: MISSING
   evidence location: MISSING
   verification: MISSING
-  publication status: MISSING
+  publication status: UNDECIDED
   last verified: MISSING
 ```
 
@@ -935,7 +1040,7 @@ Preparar una entrada por certificación o curso, sin inventar certificaciones.
   evidence: MISSING
   evidence location: MISSING
   verification: MISSING
-  publication status: MISSING
+  publication status: UNDECIDED
   last verified: MISSING
 ```
 
@@ -947,7 +1052,7 @@ Para cada enlace deberemos poder registrar:
 - name: MISSING
   URL: MISSING
   verification status: MISSING
-  publication status: MISSING
+  publication status: UNDECIDED
 ```
 
 No agregar URLs inventadas.
@@ -981,6 +1086,30 @@ Necesidades futuras:
 - consentimiento/aprobación para publicar fotografías personales
 - derechos o autorización para publicar imágenes de proyectos/clientes cuando corresponda
 - versión optimizada para web
+
+### Internal Design Reference — Not Implementation
+
+Existe una referencia visual proporcionada por Carlos para la futura fase de diseño. Es una dirección de exploración, no una implementación aprobada ni una paleta final:
+
+- tipografía display de estilo Cinzel
+- tipografía editorial Cormorant Garamond
+- atmósfera dark / near-black
+- círculos geométricos sutiles
+- ornamentos de diamante
+- divisores finos
+- partículas/neblina contenidas
+- movimiento lento y elegante
+- tipografía de alto contraste
+- sensación premium tecnológica/editorial
+- Mobile must receive its own composition and interaction treatment, not merely a scaled-down desktop layout.
+
+Design restrictions:
+
+- Do NOT use star/sparkle glyphs or decorative symbols such as “✦”.
+- The “✦” symbol shown during visual exploration was rejected by Carlos.
+- Do not use it in the hero, section dividers, navigation, buttons, project cards or decorative elements.
+
+No copiar HTML/CSS, añadir Google Fonts, crear componentes ni definir todavía la paleta final o el hero.
 
 ## Open Questions
 
