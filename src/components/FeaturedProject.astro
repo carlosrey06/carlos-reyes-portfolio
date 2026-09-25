@@ -1,372 +1,256 @@
 ---
 interface Props {
 	index: string;
-	nameLines: string[];
+	name: string;
+	subtitle?: string;
+	projectType?: string;
 	description: string;
 	status: string;
 	contribution: string;
-	stack: string[];
-	domain: string;
-	href: string;
-	variant?: 'frio-puro' | 'sellers';
+	technologies: string[];
+	url?: string;
+	domain?: string;
 }
 
-const { index, nameLines, description, status, contribution, stack, domain, href, variant = 'frio-puro' } =
-	Astro.props;
+const { index, name, subtitle, projectType, description, status, contribution, technologies, url, domain } = Astro.props;
 ---
 
-<article class:list={['featured-project', `featured-project--${variant}`]}>
-	<div class="featured-project__content">
-		<p class="featured-project__index">{index}</p>
-
-		<h3 class="featured-project__name">
-			{nameLines.map((line) => <span>{line}</span>)}
-		</h3>
-
-		<p class="featured-project__description">{description}</p>
-
-		<div class="featured-project__meta">
-			<div class="featured-project__meta-item">
-				<span>Status</span>
-				<strong>{status}</strong>
-			</div>
-			<div class="featured-project__meta-item">
-				<span>Participación</span>
-				<strong>{contribution}</strong>
-			</div>
-		</div>
-
-		<ul class="featured-project__stack" aria-label="Tecnologías principales">
-			{stack.map((technology) => <li>{technology}</li>)}
-		</ul>
+<article class="featured-project">
+	<div class="featured-project__marker">
+		<span class="featured-project__index">{index}</span>
+		<span class="featured-project__status">{status}</span>
 	</div>
 
-	<div class="featured-project__visual">
-		<div class="featured-project__geometry" aria-hidden="true">
-			{variant === 'sellers' ? (
-				<>
-					<span class="sellers-geometry__mark">S</span>
-					<span class="sellers-geometry__word">SELLERS</span>
-					<span class="sellers-geometry__line sellers-geometry__line--horizontal"></span>
-					<span class="sellers-geometry__line sellers-geometry__line--vertical"></span>
-					<span class="sellers-geometry__node sellers-geometry__node--one"></span>
-					<span class="sellers-geometry__node sellers-geometry__node--two"></span>
-				</>
-			) : (
-				<>
-					<span class="featured-project__mark">FP</span>
-					<span class="featured-project__circle featured-project__circle--outer"></span>
-					<span class="featured-project__circle featured-project__circle--inner"></span>
-					<span class="featured-project__rule"></span>
-				</>
-			)}
-		</div>
+	<div class="featured-project__identity">
+		<h3 class="featured-project__name">{name}</h3>
+		{subtitle && <p class="featured-project__subtitle">{subtitle}</p>}
+		{projectType && <p class="featured-project__type">{projectType}</p>}
+	</div>
 
-		<a class="featured-project__link" href={href} target="_blank" rel="noopener noreferrer">
-			<span>Visitar proyecto</span>
-			<span class="featured-project__domain">{domain} <span aria-hidden="true">↗</span></span>
-		</a>
+	<div class="featured-project__summary">
+		<p class="featured-project__description">{description}</p>
+		<p class="featured-project__contribution">
+			<span>Participación</span>
+			<strong>{contribution}</strong>
+		</p>
+	</div>
+
+	<div class="featured-project__details">
+		<p class="featured-project__details-label">Tecnologías</p>
+		<ul class="featured-project__stack" aria-label={`Tecnologías principales de ${name}`}>
+			{technologies.map((technology) => <li>{technology}</li>)}
+		</ul>
+
+		{url && (
+			<a
+				class="featured-project__link"
+				href={url}
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label={`Visitar el proyecto ${name} (se abre en una pestaña nueva)`}
+			>
+				<span class="featured-project__link-label">
+					Visitar proyecto <span class="featured-project__arrow" aria-hidden="true">↗</span>
+				</span>
+				{domain && <span class="featured-project__domain">{domain}</span>}
+			</a>
+		)}
 	</div>
 </article>
 
 <style>
 	.featured-project {
+		position: relative;
 		display: grid;
 		grid-template-columns: repeat(4, minmax(0, 1fr));
-		gap: 44px 16px;
+		gap: 28px 16px;
+		padding-block: clamp(48px, 14vw, 64px);
+		border-top: 1px solid var(--color-border);
 	}
 
-	.featured-project__content,
-	.featured-project__visual {
+	.featured-project::before {
+		position: absolute;
+		top: -1px;
+		left: 0;
+		width: 40px;
+		height: 1px;
+		background: var(--color-cyan);
+		content: '';
+	}
+
+	.featured-project__marker,
+	.featured-project__identity,
+	.featured-project__summary,
+	.featured-project__details {
 		grid-column: 1 / -1;
 	}
 
-	.featured-project__content {
+	.featured-project__marker {
 		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
 	}
 
-	.featured-project__index {
-		margin: 0 0 18px;
-		color: var(--color-cyan);
-		font-family: var(--font-ui);
-		font-size: 0.75rem;
-		font-weight: 600;
-		letter-spacing: 0.12em;
-		line-height: 1.4;
-	}
-
-	.featured-project__name {
-		margin: 0;
-		color: var(--color-text);
-		font-family: var(--font-display);
-		font-size: clamp(3.1rem, 15vw, 6rem);
-		font-weight: 600;
-		letter-spacing: 0.04em;
-		line-height: 0.88;
-	}
-
-	.featured-project__name span {
-		display: block;
-	}
-
-	.featured-project__description {
-		max-width: 34rem;
-		margin: 24px 0 0;
-		color: var(--color-muted);
-		font-family: var(--font-ui);
-		font-size: 1rem;
-		line-height: 1.65;
-	}
-
-	.featured-project__meta {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 24px;
-		margin-top: 28px;
-	}
-
-	.featured-project__meta-item {
-		display: flex;
-		flex-direction: column;
-		gap: 6px;
-	}
-
-	.featured-project__meta-item span,
+	.featured-project__index,
+	.featured-project__status,
+	.featured-project__type,
+	.featured-project__details-label,
+	.featured-project__contribution span,
 	.featured-project__stack {
-		color: var(--color-muted);
 		font-family: var(--font-ui);
-		font-size: 0.78rem;
-		letter-spacing: 0.08em;
-		line-height: 1.55;
+		font-size: 0.72rem;
+		letter-spacing: 0.1em;
+		line-height: 1.5;
 		text-transform: uppercase;
 	}
 
-	.featured-project__meta-item strong {
+	.featured-project__index {
+		color: var(--color-cyan);
+		font-weight: 700;
+	}
+
+	.featured-project__status {
+		color: var(--color-muted);
+	}
+
+	.featured-project__name {
+		max-width: 100%;
+		margin: 0;
 		color: var(--color-text);
+		font-family: var(--font-display);
+		font-size: clamp(2.6rem, 13vw, 3.6rem);
+		font-weight: 600;
+		letter-spacing: 0.035em;
+		line-height: 0.96;
+		overflow-wrap: anywhere;
+		text-transform: uppercase;
+	}
+
+	.featured-project__subtitle,
+	.featured-project__type {
+		max-width: 28rem;
+		margin: 14px 0 0;
+		color: var(--color-muted);
+	}
+
+	.featured-project__subtitle {
+		font-family: var(--font-ui);
+		font-size: 0.82rem;
+		letter-spacing: 0.035em;
+		line-height: 1.55;
+	}
+
+	.featured-project__type {
+		font-weight: 600;
+	}
+
+	.featured-project__description {
+		max-width: 36rem;
+		margin: 0;
+		color: var(--color-muted);
+		font-family: var(--font-ui);
+		font-size: clamp(1rem, 2vw, 1.08rem);
+		line-height: 1.7;
+	}
+
+	.featured-project__contribution {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		margin: 24px 0 0;
+	}
+
+	.featured-project__contribution span,
+	.featured-project__details-label {
+		color: var(--color-muted);
+	}
+
+	.featured-project__contribution strong {
+		color: var(--color-text);
+		font-family: var(--font-ui);
 		font-size: 0.78rem;
 		font-weight: 600;
+		line-height: 1.5;
+	}
+
+	.featured-project__details-label {
+		margin: 0 0 10px;
 	}
 
 	.featured-project__stack {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 8px 0;
-		max-width: 34rem;
-		margin: 22px 0 0;
+		gap: 6px 0;
+		margin: 0;
 		padding: 0;
+		color: var(--color-text);
 		list-style: none;
 	}
 
-	.featured-project__stack li {
-		white-space: normal;
-	}
-
 	.featured-project__stack li:not(:last-child)::after {
-		margin: 0 9px;
+		margin-inline: 8px;
 		color: var(--color-cyan);
 		content: '/';
 	}
 
-	.featured-project__visual {
-		position: relative;
-		min-height: 290px;
-		overflow: hidden;
-		border-top: 1px solid var(--color-border);
-		border-bottom: 1px solid var(--color-border);
-		background: linear-gradient(135deg, color-mix(in srgb, var(--color-surface) 80%, transparent), transparent 72%);
-		isolation: isolate;
-	}
-
-	.featured-project__geometry {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-	}
-
-	.featured-project__mark {
-		position: absolute;
-		top: 4%;
-		left: 8%;
-		color: color-mix(in srgb, var(--color-text) 8%, transparent);
-		font-family: var(--font-display);
-		font-size: clamp(8rem, 35vw, 17rem);
-		font-weight: 600;
-		letter-spacing: -0.08em;
-		line-height: 0.8;
-	}
-
-	.featured-project__circle {
-		position: absolute;
-		border: 1px solid color-mix(in srgb, var(--color-cyan) 24%, transparent);
-		border-radius: 50%;
-		transform: rotate(-16deg);
-	}
-
-	.featured-project__circle--outer {
-		top: -20%;
-		right: -28%;
-		width: 120%;
-		aspect-ratio: 1;
-	}
-
-	.featured-project__circle--inner {
-		top: 3%;
-		right: -14%;
-		width: 78%;
-		aspect-ratio: 1;
-		border-color: color-mix(in srgb, var(--color-blue) 28%, transparent);
-	}
-
-	.featured-project__rule {
-		position: absolute;
-		top: 24%;
-		left: 0;
-		width: 46%;
-		height: 1px;
-		background: linear-gradient(90deg, var(--color-cyan), transparent);
-		opacity: 0.55;
-	}
-
 	.featured-project__link {
-		position: absolute;
-		right: 20px;
-		bottom: 20px;
 		display: inline-flex;
 		flex-direction: column;
-		align-items: flex-end;
-		gap: 8px;
-		min-height: 48px;
-		padding: 12px 0 10px;
-		border-bottom: 1px solid var(--color-cyan);
+		align-items: flex-start;
+		gap: 7px;
+		max-width: 100%;
+		margin-top: 26px;
 		color: var(--color-text);
 		font-family: var(--font-ui);
-		font-size: 0.76rem;
+		font-size: 0.78rem;
 		font-weight: 600;
-		letter-spacing: 0.08em;
-		line-height: 1.2;
-		text-align: right;
+		letter-spacing: 0.06em;
+		line-height: 1.35;
 		text-decoration: none;
-		text-transform: uppercase;
+	}
+
+	.featured-project__link-label {
+		padding-bottom: 5px;
+		border-bottom: 1px solid var(--color-cyan);
 		transition:
-			color 180ms ease,
-			border-color 180ms ease;
+			border-color 180ms ease,
+			color 180ms ease;
+	}
+
+	.featured-project__arrow {
+		display: inline-block;
+		color: var(--color-cyan);
+		transition: transform 180ms ease;
 	}
 
 	.featured-project__domain {
+		max-width: 100%;
 		color: var(--color-muted);
-		font-size: 0.72rem;
+		font-size: 0.7rem;
 		font-weight: 400;
-		letter-spacing: 0.04em;
+		letter-spacing: 0.025em;
 		overflow-wrap: anywhere;
-		text-transform: none;
 	}
 
-	.featured-project__link:hover {
-		border-color: var(--color-text);
-		color: var(--color-cyan);
+	.featured-project__link:focus-visible {
+		border-radius: 1px;
 	}
 
-	.featured-project + .featured-project {
-		margin-top: clamp(96px, 14vw, 200px);
-	}
+	@media (hover: hover) and (pointer: fine) {
+		.featured-project__link:hover .featured-project__link-label {
+			border-color: var(--color-text);
+			color: var(--color-cyan);
+		}
 
-	.featured-project--sellers .featured-project__visual {
-		background: linear-gradient(135deg, color-mix(in srgb, var(--color-blue) 10%, var(--color-surface)), transparent 70%);
-	}
-
-	.sellers-geometry__mark {
-		position: absolute;
-		top: -14%;
-		left: 4%;
-		color: color-mix(in srgb, var(--color-text) 8%, transparent);
-		font-family: var(--font-display);
-		font-size: clamp(14rem, 34vw, 23rem);
-		font-weight: 600;
-		line-height: 0.8;
-	}
-
-	.sellers-geometry__word {
-		position: absolute;
-		right: 7%;
-		bottom: 18%;
-		color: color-mix(in srgb, var(--color-text) 16%, transparent);
-		font-family: var(--font-display);
-		font-size: clamp(1.5rem, 4vw, 3rem);
-		font-weight: 600;
-		letter-spacing: 0.12em;
-		line-height: 1;
-	}
-
-	.sellers-geometry__line {
-		position: absolute;
-		display: block;
-		background: var(--color-cyan);
-		opacity: 0.5;
-	}
-
-	.sellers-geometry__line--horizontal {
-		top: 32%;
-		left: 0;
-		width: 72%;
-		height: 1px;
-		background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
-	}
-
-	.sellers-geometry__line--vertical {
-		top: 0;
-		right: 28%;
-		width: 1px;
-		height: 78%;
-		background: linear-gradient(180deg, transparent, var(--color-cyan), transparent);
-	}
-
-	.sellers-geometry__node {
-		position: absolute;
-		width: 7px;
-		height: 7px;
-		border: 1px solid var(--color-cyan);
-		border-radius: 50%;
-		background: var(--color-background);
-	}
-
-	.sellers-geometry__node--one {
-		top: calc(32% - 3px);
-		left: 27%;
-	}
-
-	.sellers-geometry__node--two {
-		top: calc(32% - 3px);
-		right: calc(28% - 3px);
+		.featured-project__link:hover .featured-project__arrow {
+			transform: translate(2px, -2px);
+		}
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
-		.featured-project__name {
-			animation: project-name-reveal 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
-		}
-
-		.featured-project__rule {
-			animation: project-rule-reveal 900ms ease-out 150ms both;
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.featured-project__name,
-		.featured-project__rule {
-			animation: none;
-		}
-	}
-
-	@keyframes project-name-reveal {
-		from {
-			opacity: 0;
-			transform: translateY(10px);
-		}
-
-		to {
-			opacity: 1;
-			transform: translateY(0);
+		.featured-project::before {
+			animation: project-rule-reveal 700ms ease-out both;
 		}
 	}
 
@@ -385,73 +269,59 @@ const { index, nameLines, description, status, contribution, stack, domain, href
 	@media (min-width: 768px) {
 		.featured-project {
 			grid-template-columns: repeat(12, minmax(0, 1fr));
-			column-gap: clamp(24px, 2vw, 32px);
-			row-gap: 56px;
-			min-height: min(68svh, 680px);
+			gap: 36px clamp(18px, 2vw, 28px);
+			padding-block: clamp(56px, 8vw, 80px);
 		}
 
-		.featured-project__content {
-			grid-column: 1 / span 5;
-			justify-content: center;
+		.featured-project__marker {
+			grid-column: 1 / span 2;
+			align-items: flex-start;
+			justify-content: flex-start;
+			flex-direction: column;
+			gap: 10px;
 		}
 
-		.featured-project__index {
-			margin-bottom: 22px;
+		.featured-project__identity {
+			grid-column: 3 / span 5;
 		}
 
-		.featured-project__description {
-			margin-top: 30px;
-		}
-
-		.featured-project__meta {
-			margin-top: 34px;
-		}
-
-		.featured-project__meta-item span,
-		.featured-project__stack {
-			font-size: 0.72rem;
-			line-height: 1.4;
-		}
-
-		.featured-project__stack {
-			margin-top: 28px;
-		}
-
-		.featured-project__visual {
-			grid-column: 7 / span 6;
-			min-height: 100%;
-		}
-
-		.featured-project--sellers .featured-project__content {
+		.featured-project__summary {
 			grid-column: 8 / span 5;
-			grid-row: 1;
 		}
 
-		.featured-project--sellers .featured-project__visual {
-			grid-column: 1 / span 6;
-			grid-row: 1;
+		.featured-project__details {
+			grid-column: 3 / span 10;
 		}
 
 		.featured-project__name {
-			font-size: clamp(4.5rem, 7vw, 7.5rem);
+			font-size: clamp(2.75rem, 4.3vw, 3.3rem);
+			overflow-wrap: normal;
+		}
+	}
+
+	@media (min-width: 1100px) {
+		.featured-project {
+			column-gap: clamp(22px, 2vw, 32px);
 		}
 
-		.featured-project__circle--outer {
-			top: -22%;
-			right: -26%;
-			width: 116%;
+		.featured-project__identity {
+			grid-column: 3 / span 3;
 		}
 
-		.featured-project__link {
-			right: 32px;
-			bottom: 32px;
+		.featured-project__summary {
+			grid-column: 6 / span 4;
 		}
 
-		.featured-project--sellers .featured-project__link {
-			left: 32px;
-			right: auto;
-			align-items: flex-start;
-			text-align: left;
+		.featured-project__details {
+			grid-column: 10 / span 3;
+		}
+
+		.featured-project__name {
+			font-size: clamp(2.75rem, 4vw, 3.3rem);
+		}
+
+		.featured-project__description {
+			font-size: 1rem;
 		}
 	}
 </style>
