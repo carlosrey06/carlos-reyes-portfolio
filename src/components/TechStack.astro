@@ -1,0 +1,281 @@
+---
+const categories = [
+	{
+		index: '01',
+		name: 'Frontend',
+		technologies: ['Astro', 'React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS'],
+	},
+	{
+		index: '02',
+		name: 'Backend',
+		technologies: ['Node.js', 'NestJS', 'PHP', 'Laravel', 'CodeIgniter', 'Livewire'],
+	},
+	{
+		index: '03',
+		name: 'Datos',
+		technologies: ['MySQL', 'Oracle', 'Drizzle ORM', 'Sequelize'],
+	},
+	{
+		index: '04',
+		name: 'Infraestructura',
+		technologies: ['Linux', 'Docker', 'Docker Compose', 'Traefik', 'Nginx', 'SSH', 'Vercel'],
+	},
+	{
+		index: '05',
+		name: 'Seguridad & Calidad',
+		technologies: ['Better Auth', 'JWT', 'RBAC', 'Zod', 'Vitest', 'Playwright'],
+	},
+	{
+		index: '06',
+		name: 'Automatización',
+		technologies: ['Google Apps Script', 'ExcelJS', 'Webhooks'],
+	},
+];
+---
+
+<section id="stack" class="tech-stack" aria-labelledby="tech-stack-title">
+	<div class="tech-stack__inner">
+		<header class="tech-stack__header">
+			<p class="tech-stack__eyebrow">02 / TECNOLOGÍAS</p>
+			<h2 id="tech-stack-title">Tecnologías</h2>
+			<p class="tech-stack__statement">Construir, integrar y desplegar.</p>
+		</header>
+
+		<div class="tech-stack__categories">
+			{
+				categories.map((category) => (
+					<section class="tech-category" aria-labelledby={`tech-category-${category.index}`}>
+						<span class="tech-category__index" aria-hidden="true">{category.index}</span>
+						<h3 id={`tech-category-${category.index}`} class="tech-category__title">
+							{category.name}
+						</h3>
+						<ul class="tech-category__list">
+							{category.technologies.map((technology) => <li>{technology}</li>)}
+						</ul>
+					</section>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.tech-stack {
+		padding: 0 0 clamp(96px, 16vw, 144px);
+	}
+
+	.tech-stack__inner {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		column-gap: 16px;
+		width: min(100%, var(--content-width));
+		margin: 0 auto;
+		padding-inline: var(--page-padding);
+	}
+
+	.tech-stack__header,
+	.tech-stack__categories {
+		grid-column: 1 / -1;
+	}
+
+	.tech-stack__header {
+		max-width: 38rem;
+		margin-bottom: 56px;
+	}
+
+	.tech-stack__eyebrow {
+		margin: 0 0 18px;
+		color: var(--color-cyan);
+		font-family: var(--font-ui);
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		line-height: 1.4;
+		text-transform: uppercase;
+	}
+
+	.tech-stack h2 {
+		margin: 0;
+		color: var(--color-text);
+		font-family: var(--font-display);
+		font-size: clamp(2.2rem, 10.5vw, 3rem);
+		font-weight: 600;
+		letter-spacing: 0.035em;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.tech-stack__statement {
+		max-width: 25rem;
+		margin: 24px 0 0;
+		color: var(--color-muted);
+		font-family: var(--font-editorial);
+		font-size: clamp(1.55rem, 7vw, 1.8rem);
+		font-weight: 300;
+		letter-spacing: 0.01em;
+		line-height: 1.25;
+	}
+
+	.tech-category {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 16px;
+		padding-block: 32px;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.tech-category:last-child {
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.tech-category__index {
+		grid-column: 1;
+		color: var(--color-cyan);
+		font-family: var(--font-ui);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		line-height: 1.5;
+	}
+
+	.tech-category__title {
+		grid-column: 2 / -1;
+		margin: 0;
+		color: var(--color-muted);
+		font-family: var(--font-ui);
+		font-size: 0.76rem;
+		font-weight: 600;
+		letter-spacing: 0.11em;
+		line-height: 1.5;
+		text-transform: uppercase;
+	}
+
+	.tech-category__list {
+		display: flex;
+		grid-column: 1 / -1;
+		flex-wrap: wrap;
+		gap: 8px 0;
+		margin: 2px 0 0;
+		padding: 0;
+		color: var(--color-text);
+		font-family: var(--font-ui);
+		font-size: 0.95rem;
+		font-weight: 500;
+		letter-spacing: 0.015em;
+		line-height: 1.55;
+		list-style: none;
+	}
+
+	.tech-category__list li {
+		white-space: nowrap;
+	}
+
+	.tech-category__list li:not(:last-child)::after {
+		margin-inline: 9px;
+		color: var(--color-cyan);
+		content: '/';
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.tech-stack__categories {
+			animation: tech-stack-reveal 700ms ease-out both;
+		}
+	}
+
+	@keyframes tech-stack-reveal {
+		from {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (min-width: 768px) {
+		.tech-stack {
+			padding-bottom: clamp(120px, 14vw, 176px);
+		}
+
+		.tech-stack__inner {
+			grid-template-columns: repeat(8, minmax(0, 1fr));
+			column-gap: 20px;
+		}
+
+		.tech-stack__header {
+			grid-column: 1 / span 6;
+			margin-bottom: 0;
+		}
+
+		.tech-stack__categories {
+			grid-column: 2 / span 7;
+			margin-top: 64px;
+		}
+
+		.tech-stack h2 {
+			font-size: clamp(3rem, 7vw, 3.75rem);
+		}
+
+		.tech-stack__statement {
+			font-size: clamp(1.8rem, 3.5vw, 2.15rem);
+		}
+
+		.tech-category {
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+			column-gap: 20px;
+			padding-block: 36px;
+		}
+
+		.tech-category__title {
+			grid-column: 2 / -1;
+		}
+
+		.tech-category__list {
+			grid-column: 2 / -1;
+			font-size: 1rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.tech-stack__inner {
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+			column-gap: clamp(24px, 2vw, 32px);
+		}
+
+		.tech-stack__header {
+			grid-column: 1 / span 4;
+		}
+
+		.tech-stack__categories {
+			grid-column: 6 / span 7;
+			margin-top: 0;
+		}
+
+		.tech-stack h2 {
+			font-size: clamp(3rem, 4vw, 3.75rem);
+			white-space: nowrap;
+		}
+
+		.tech-stack__statement {
+			max-width: 20rem;
+			font-size: clamp(1.8rem, 2.4vw, 2.15rem);
+		}
+
+		.tech-category {
+			grid-template-columns: repeat(7, minmax(0, 1fr));
+			column-gap: clamp(18px, 1.6vw, 24px);
+			padding-block: 38px;
+		}
+
+		.tech-category__title {
+			grid-column: 2 / span 2;
+		}
+
+		.tech-category__list {
+			grid-column: 4 / span 4;
+			margin-top: 0;
+		}
+	}
+</style>
