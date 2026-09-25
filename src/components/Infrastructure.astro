@@ -1,0 +1,326 @@
+---
+const stages = [
+	{ index: '01', name: 'Aplicación' },
+	{ index: '02', name: 'Contenedor' },
+	{ index: '03', name: 'Reverse proxy' },
+	{ index: '04', name: 'Producción' },
+];
+
+const technologies = ['Linux', 'SSH', 'Docker', 'Docker Compose', 'Traefik', 'Nginx', 'Vercel'];
+---
+
+<section id="infrastructure" class="infrastructure" aria-labelledby="infrastructure-title">
+	<div class="infrastructure__inner">
+		<header class="infrastructure__header">
+			<p class="infrastructure__eyebrow">04 / INFRAESTRUCTURA</p>
+			<h2 id="infrastructure-title">
+				<span>Del código</span>
+				<span>a producción</span>
+			</h2>
+			<p class="infrastructure__description">
+				Desarrollo, despliegue y operación de aplicaciones en entornos Linux y contenedores.
+			</p>
+		</header>
+
+		<div class="infrastructure__journey">
+			<p class="infrastructure__journey-label">Recorrido conceptual</p>
+
+			<ol class="infrastructure__flow">
+				{
+					stages.map((stage, stageIndex) => (
+						<li class="infrastructure__stage">
+							<span class="infrastructure__stage-index">{stage.index}</span>
+							<strong>{stage.name}</strong>
+							{stageIndex < stages.length - 1 && (
+								<span class="infrastructure__connector" aria-hidden="true">
+									<span>→</span>
+								</span>
+							)}
+						</li>
+					))
+				}
+			</ol>
+
+			<div class="infrastructure__technologies">
+				<p>Contexto técnico</p>
+				<ul aria-label="Tecnologías relacionadas con despliegue e infraestructura">
+					{technologies.map((technology) => <li>{technology}</li>)}
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.infrastructure {
+		padding: 0 0 clamp(112px, 18vw, 160px);
+	}
+
+	.infrastructure__inner {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 64px 16px;
+		width: min(100%, var(--content-width));
+		margin: 0 auto;
+		padding-inline: var(--page-padding);
+	}
+
+	.infrastructure__header,
+	.infrastructure__journey {
+		grid-column: 1 / -1;
+	}
+
+	.infrastructure__header {
+		max-width: 38rem;
+	}
+
+	.infrastructure__eyebrow,
+	.infrastructure__journey-label,
+	.infrastructure__technologies > p,
+	.infrastructure__stage-index,
+	.infrastructure__technologies ul {
+		font-family: var(--font-ui);
+		font-size: 0.72rem;
+		letter-spacing: 0.1em;
+		line-height: 1.5;
+		text-transform: uppercase;
+	}
+
+	.infrastructure__eyebrow {
+		margin: 0 0 18px;
+		color: var(--color-cyan);
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		line-height: 1.4;
+	}
+
+	.infrastructure h2 {
+		margin: 0;
+		color: var(--color-text);
+		font-family: var(--font-display);
+		font-size: clamp(2.3rem, 10vw, 3rem);
+		font-weight: 600;
+		letter-spacing: 0.025em;
+		line-height: 0.98;
+		text-transform: uppercase;
+	}
+
+	.infrastructure h2 span {
+		display: block;
+	}
+
+	.infrastructure__description {
+		max-width: 34rem;
+		margin: 28px 0 0;
+		color: var(--color-muted);
+		font-family: var(--font-ui);
+		font-size: clamp(1rem, 2.8vw, 1.08rem);
+		line-height: 1.7;
+	}
+
+	.infrastructure__journey-label,
+	.infrastructure__technologies > p {
+		margin: 0;
+		color: var(--color-muted);
+	}
+
+	.infrastructure__flow {
+		margin: 18px 0 0;
+		padding: 32px 0;
+		border-top: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
+		list-style: none;
+	}
+
+	.infrastructure__stage {
+		display: grid;
+		grid-template-columns: 32px minmax(0, 1fr);
+		align-items: center;
+		position: relative;
+	}
+
+	.infrastructure__stage-index {
+		grid-column: 1;
+		color: var(--color-cyan);
+		font-weight: 700;
+	}
+
+	.infrastructure__stage strong {
+		grid-column: 2;
+		color: var(--color-text);
+		font-family: var(--font-ui);
+		font-size: 0.9rem;
+		font-weight: 600;
+		letter-spacing: 0.075em;
+		line-height: 1.4;
+		text-transform: uppercase;
+	}
+
+	.infrastructure__connector {
+		position: relative;
+		grid-column: 1;
+		width: 1px;
+		height: 30px;
+		margin: 9px auto;
+		background: linear-gradient(180deg, var(--color-border-strong), var(--color-cyan));
+	}
+
+	.infrastructure__connector span {
+		position: absolute;
+		bottom: -7px;
+		left: -4px;
+		color: var(--color-cyan);
+		font-family: var(--font-ui);
+		font-size: 0.68rem;
+		line-height: 1;
+		transform: rotate(90deg);
+	}
+
+	.infrastructure__technologies {
+		margin-top: 30px;
+	}
+
+	.infrastructure__technologies > p {
+		margin-bottom: 10px;
+	}
+
+	.infrastructure__technologies ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 7px 0;
+		margin: 0;
+		padding: 0;
+		color: var(--color-text);
+		list-style: none;
+	}
+
+	.infrastructure__technologies li {
+		white-space: nowrap;
+	}
+
+	.infrastructure__technologies li:not(:last-child)::after {
+		margin-inline: 8px;
+		color: var(--color-cyan);
+		content: '/';
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.infrastructure__journey {
+			animation: infrastructure-reveal 700ms ease-out both;
+		}
+	}
+
+	@keyframes infrastructure-reveal {
+		from {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (min-width: 768px) {
+		.infrastructure {
+			padding-bottom: clamp(128px, 14vw, 176px);
+		}
+
+		.infrastructure__inner {
+			grid-template-columns: repeat(8, minmax(0, 1fr));
+			gap: 72px 20px;
+		}
+
+		.infrastructure__header {
+			grid-column: 1 / span 6;
+		}
+
+		.infrastructure__journey {
+			grid-column: 2 / span 7;
+		}
+
+		.infrastructure h2 {
+			font-size: clamp(3rem, 7vw, 3.75rem);
+		}
+
+		.infrastructure__description {
+			font-size: 1.08rem;
+		}
+
+		.infrastructure__flow {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			column-gap: 24px;
+			padding-block: 36px;
+		}
+
+		.infrastructure__stage {
+			display: block;
+			min-width: 0;
+		}
+
+		.infrastructure__stage-index,
+		.infrastructure__stage strong {
+			display: block;
+		}
+
+		.infrastructure__stage strong {
+			margin-top: 10px;
+			font-size: 0.82rem;
+			overflow-wrap: anywhere;
+		}
+
+		.infrastructure__connector {
+			position: absolute;
+			top: 4px;
+			left: calc(100% + 4px);
+			width: 16px;
+			height: 1px;
+			margin: 0;
+			background: linear-gradient(90deg, var(--color-border-strong), var(--color-cyan));
+		}
+
+		.infrastructure__connector span {
+			top: -5px;
+			right: -2px;
+			bottom: auto;
+			left: auto;
+			transform: none;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.infrastructure__inner {
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+			column-gap: clamp(24px, 2vw, 32px);
+			align-items: start;
+		}
+
+		.infrastructure__header {
+			grid-column: 1 / span 5;
+		}
+
+		.infrastructure__journey {
+			grid-column: 7 / span 6;
+			padding-top: 10px;
+		}
+
+		.infrastructure h2 {
+			font-size: clamp(2.8rem, 4vw, 3.75rem);
+		}
+
+		.infrastructure__flow {
+			column-gap: clamp(18px, 1.8vw, 28px);
+		}
+
+		.infrastructure__connector {
+			left: calc(100% + 3px);
+			width: clamp(12px, 1.2vw, 18px);
+		}
+
+		.infrastructure__technologies {
+			margin-top: 34px;
+		}
+	}
+</style>
