@@ -8,12 +8,14 @@ interface Props {
 	stack: string[];
 	domain: string;
 	href: string;
+	variant?: 'frio-puro' | 'sellers';
 }
 
-const { index, nameLines, description, status, contribution, stack, domain, href } = Astro.props;
+const { index, nameLines, description, status, contribution, stack, domain, href, variant = 'frio-puro' } =
+	Astro.props;
 ---
 
-<article class="featured-project">
+<article class:list={['featured-project', `featured-project--${variant}`]}>
 	<div class="featured-project__content">
 		<p class="featured-project__index">{index}</p>
 
@@ -41,10 +43,23 @@ const { index, nameLines, description, status, contribution, stack, domain, href
 
 	<div class="featured-project__visual">
 		<div class="featured-project__geometry" aria-hidden="true">
-			<span class="featured-project__mark">FP</span>
-			<span class="featured-project__circle featured-project__circle--outer"></span>
-			<span class="featured-project__circle featured-project__circle--inner"></span>
-			<span class="featured-project__rule"></span>
+			{variant === 'sellers' ? (
+				<>
+					<span class="sellers-geometry__mark">S</span>
+					<span class="sellers-geometry__word">SELLERS</span>
+					<span class="sellers-geometry__line sellers-geometry__line--horizontal"></span>
+					<span class="sellers-geometry__line sellers-geometry__line--vertical"></span>
+					<span class="sellers-geometry__node sellers-geometry__node--one"></span>
+					<span class="sellers-geometry__node sellers-geometry__node--two"></span>
+				</>
+			) : (
+				<>
+					<span class="featured-project__mark">FP</span>
+					<span class="featured-project__circle featured-project__circle--outer"></span>
+					<span class="featured-project__circle featured-project__circle--inner"></span>
+					<span class="featured-project__rule"></span>
+				</>
+			)}
 		</div>
 
 		<a class="featured-project__link" href={href} target="_blank" rel="noopener noreferrer">
@@ -244,12 +259,86 @@ const { index, nameLines, description, status, contribution, stack, domain, href
 		font-size: 0.72rem;
 		font-weight: 400;
 		letter-spacing: 0.04em;
+		overflow-wrap: anywhere;
 		text-transform: none;
 	}
 
 	.featured-project__link:hover {
 		border-color: var(--color-text);
 		color: var(--color-cyan);
+	}
+
+	.featured-project + .featured-project {
+		margin-top: clamp(96px, 14vw, 200px);
+	}
+
+	.featured-project--sellers .featured-project__visual {
+		background: linear-gradient(135deg, color-mix(in srgb, var(--color-blue) 10%, var(--color-surface)), transparent 70%);
+	}
+
+	.sellers-geometry__mark {
+		position: absolute;
+		top: -14%;
+		left: 4%;
+		color: color-mix(in srgb, var(--color-text) 8%, transparent);
+		font-family: var(--font-display);
+		font-size: clamp(14rem, 34vw, 23rem);
+		font-weight: 600;
+		line-height: 0.8;
+	}
+
+	.sellers-geometry__word {
+		position: absolute;
+		right: 7%;
+		bottom: 18%;
+		color: color-mix(in srgb, var(--color-text) 16%, transparent);
+		font-family: var(--font-display);
+		font-size: clamp(1.5rem, 4vw, 3rem);
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		line-height: 1;
+	}
+
+	.sellers-geometry__line {
+		position: absolute;
+		display: block;
+		background: var(--color-cyan);
+		opacity: 0.5;
+	}
+
+	.sellers-geometry__line--horizontal {
+		top: 32%;
+		left: 0;
+		width: 72%;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
+	}
+
+	.sellers-geometry__line--vertical {
+		top: 0;
+		right: 28%;
+		width: 1px;
+		height: 78%;
+		background: linear-gradient(180deg, transparent, var(--color-cyan), transparent);
+	}
+
+	.sellers-geometry__node {
+		position: absolute;
+		width: 7px;
+		height: 7px;
+		border: 1px solid var(--color-cyan);
+		border-radius: 50%;
+		background: var(--color-background);
+	}
+
+	.sellers-geometry__node--one {
+		top: calc(32% - 3px);
+		left: 27%;
+	}
+
+	.sellers-geometry__node--two {
+		top: calc(32% - 3px);
+		right: calc(28% - 3px);
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
@@ -333,6 +422,16 @@ const { index, nameLines, description, status, contribution, stack, domain, href
 			min-height: 100%;
 		}
 
+		.featured-project--sellers .featured-project__content {
+			grid-column: 8 / span 5;
+			grid-row: 1;
+		}
+
+		.featured-project--sellers .featured-project__visual {
+			grid-column: 1 / span 6;
+			grid-row: 1;
+		}
+
 		.featured-project__name {
 			font-size: clamp(4.5rem, 7vw, 7.5rem);
 		}
@@ -346,6 +445,13 @@ const { index, nameLines, description, status, contribution, stack, domain, href
 		.featured-project__link {
 			right: 32px;
 			bottom: 32px;
+		}
+
+		.featured-project--sellers .featured-project__link {
+			left: 32px;
+			right: auto;
+			align-items: flex-start;
+			text-align: left;
 		}
 	}
 </style>
