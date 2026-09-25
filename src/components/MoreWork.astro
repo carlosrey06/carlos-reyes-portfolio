@@ -1,0 +1,389 @@
+---
+interface Project {
+	index: string;
+	name: string;
+	description: string;
+	label: string;
+	technologies: string[];
+	attribution?: string;
+	url?: string;
+	domain?: string;
+}
+
+const projects: Project[] = [
+	{
+		index: '01',
+		name: 'P.U.L.S.E.',
+		description: 'Automatización para procesamiento, validación y actualización controlada de información de precios.',
+		label: 'EN PRODUCCIÓN',
+		technologies: ['Google Apps Script', 'Google Sheets', 'Google Drive', 'JavaScript', 'Slack'],
+	},
+	{
+		index: '02',
+		name: 'IMXTime',
+		description: 'Sistema interno para control de asistencia, jornadas, horarios, vacaciones e incidencias.',
+		label: 'EN PRODUCCIÓN',
+		technologies: ['Node.js', 'Express', 'MySQL', 'Sequelize', 'Docker Compose'],
+	},
+	{
+		index: '03',
+		name: 'YollotDP',
+		description: 'Iniciativa tecnológica cofundada para desarrollar soluciones digitales y software a medida.',
+		label: 'INICIATIVA',
+		technologies: ['PHP', 'Laravel', 'MySQL', 'Tailwind CSS', 'Docker', 'Nginx'],
+		attribution: 'Cofundador · Full Stack Developer',
+		url: 'https://yollotdp.com/',
+		domain: 'yollotdp.com',
+	},
+	{
+		index: '04',
+		name: 'Cadebot L100',
+		description: 'Landing page comercial para el robot de servicio Cadebot L100.',
+		label: 'EN PRODUCCIÓN',
+		technologies: ['HTML', 'CSS', 'JavaScript'],
+		attribution: 'Desarrollo integral',
+		url: 'https://importacionesamexico.com.mx/cadebot',
+		domain: 'importacionesamexico.com.mx/cadebot',
+	},
+];
+---
+
+<section id="more-work" class="more-work" aria-labelledby="more-work-title">
+	<div class="more-work__inner">
+		<header class="more-work__header">
+			<p class="more-work__eyebrow">03 / MÁS PROYECTOS</p>
+			<h2 id="more-work-title">
+				<span>Otros</span>
+				<span>proyectos</span>
+			</h2>
+		</header>
+
+		<ul class="more-work__list">
+			{
+				projects.map((project) => (
+					<li class="more-work__project">
+						<div class="more-work__project-marker">
+							<span class="more-work__project-index">{project.index}</span>
+							<span class="more-work__project-label">{project.label}</span>
+						</div>
+
+						<div class="more-work__project-identity">
+							<h3>{project.name}</h3>
+							<p>{project.description}</p>
+						</div>
+
+						<div class="more-work__project-technologies">
+							<p>Tecnologías</p>
+							<ul aria-label={`Tecnologías principales de ${project.name}`}>
+								{project.technologies.map((technology) => <li>{technology}</li>)}
+							</ul>
+						</div>
+
+						{(project.attribution || project.url) && (
+							<div class="more-work__project-context">
+								{project.attribution && <p>{project.attribution}</p>}
+								{project.url && (
+									<a
+										href={project.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label={`Visitar el proyecto ${project.name} (se abre en una pestaña nueva)`}
+									>
+										<span>Visitar proyecto</span>
+										<span class="more-work__project-arrow" aria-hidden="true">↗</span>
+									</a>
+								)}
+								{project.domain && <span class="more-work__project-domain">{project.domain}</span>}
+							</div>
+						)}
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.more-work {
+		padding: 0 0 clamp(104px, 16vw, 160px);
+	}
+
+	.more-work__inner {
+		width: min(100%, var(--content-width));
+		margin: 0 auto;
+		padding-inline: var(--page-padding);
+	}
+
+	.more-work__header {
+		margin-bottom: clamp(48px, 10vw, 64px);
+	}
+
+	.more-work__eyebrow {
+		margin: 0 0 18px;
+		color: var(--color-cyan);
+		font-family: var(--font-ui);
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		line-height: 1.4;
+		text-transform: uppercase;
+	}
+
+	.more-work h2 {
+		margin: 0;
+		color: var(--color-text);
+		font-family: var(--font-display);
+		font-size: clamp(2.2rem, 9vw, 2.75rem);
+		font-weight: 600;
+		letter-spacing: 0.035em;
+		line-height: 0.96;
+		text-transform: uppercase;
+	}
+
+	.more-work h2 span {
+		display: block;
+	}
+
+	.more-work__list,
+	.more-work__project-technologies ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.more-work__list {
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.more-work__project {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 28px 16px;
+		padding-block: clamp(40px, 12vw, 52px);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.more-work__project-marker,
+	.more-work__project-identity,
+	.more-work__project-technologies,
+	.more-work__project-context {
+		grid-column: 1 / -1;
+	}
+
+	.more-work__project-marker {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 20px;
+	}
+
+	.more-work__project-index,
+	.more-work__project-label,
+	.more-work__project-technologies > p,
+	.more-work__project-technologies ul {
+		font-family: var(--font-ui);
+		font-size: 0.72rem;
+		letter-spacing: 0.09em;
+		line-height: 1.5;
+		text-transform: uppercase;
+	}
+
+	.more-work__project-index {
+		color: var(--color-cyan);
+		font-weight: 700;
+	}
+
+	.more-work__project-label,
+	.more-work__project-technologies > p {
+		color: var(--color-muted);
+	}
+
+	.more-work__project-identity h3 {
+		margin: 0;
+		color: var(--color-text);
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 9vw, 2.7rem);
+		font-weight: 600;
+		letter-spacing: 0.025em;
+		line-height: 1;
+		overflow-wrap: anywhere;
+	}
+
+	.more-work__project-identity p {
+		max-width: 35rem;
+		margin: 18px 0 0;
+		color: var(--color-muted);
+		font-family: var(--font-ui);
+		font-size: 0.95rem;
+		line-height: 1.65;
+	}
+
+	.more-work__project-technologies > p {
+		margin: 0 0 9px;
+	}
+
+	.more-work__project-technologies ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px 0;
+		color: var(--color-text);
+	}
+
+	.more-work__project-technologies li {
+		white-space: nowrap;
+	}
+
+	.more-work__project-technologies li:not(:last-child)::after {
+		margin-inline: 8px;
+		color: var(--color-cyan);
+		content: '/';
+	}
+
+	.more-work__project-context {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+	}
+
+	.more-work__project-context p {
+		margin: 0;
+		color: var(--color-muted);
+		font-family: var(--font-ui);
+		font-size: 0.78rem;
+		line-height: 1.5;
+	}
+
+	.more-work__project-context a {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding-bottom: 4px;
+		border-bottom: 1px solid var(--color-cyan);
+		color: var(--color-text);
+		font-family: var(--font-ui);
+		font-size: 0.76rem;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		line-height: 1.35;
+		text-decoration: none;
+		transition:
+			border-color 180ms ease,
+			color 180ms ease;
+	}
+
+	.more-work__project-arrow {
+		display: inline-block;
+		color: var(--color-cyan);
+		transition: transform 180ms ease;
+	}
+
+	.more-work__project-domain {
+		max-width: 100%;
+		color: var(--color-muted);
+		font-family: var(--font-ui);
+		font-size: 0.7rem;
+		letter-spacing: 0.02em;
+		line-height: 1.45;
+		overflow-wrap: anywhere;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.more-work__project-context a:hover {
+			border-color: var(--color-text);
+			color: var(--color-cyan);
+		}
+
+		.more-work__project-context a:hover .more-work__project-arrow {
+			transform: translate(2px, -2px);
+		}
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.more-work__list {
+			animation: more-work-reveal 700ms ease-out both;
+		}
+	}
+
+	@keyframes more-work-reveal {
+		from {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (min-width: 768px) {
+		.more-work {
+			padding-bottom: clamp(128px, 14vw, 176px);
+		}
+
+		.more-work__header {
+			margin-bottom: 64px;
+		}
+
+		.more-work h2 {
+			font-size: clamp(2.75rem, 5vw, 3.25rem);
+		}
+
+		.more-work__project {
+			grid-template-columns: repeat(8, minmax(0, 1fr));
+			column-gap: 20px;
+			padding-block: 48px;
+		}
+
+		.more-work__project-marker {
+			grid-column: 1 / span 2;
+			align-items: flex-start;
+			justify-content: flex-start;
+			flex-direction: column;
+			gap: 9px;
+		}
+
+		.more-work__project-identity {
+			grid-column: 3 / span 6;
+		}
+
+		.more-work__project-technologies,
+		.more-work__project-context {
+			grid-column: 3 / span 6;
+		}
+
+		.more-work__project-identity h3 {
+			font-size: clamp(2.2rem, 4.8vw, 2.8rem);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.more-work__project {
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+			column-gap: clamp(24px, 2vw, 32px);
+			padding-block: clamp(44px, 4vw, 56px);
+		}
+
+		.more-work__project-marker {
+			grid-column: 1;
+		}
+
+		.more-work__project-identity {
+			grid-column: 2 / span 5;
+		}
+
+		.more-work__project-technologies {
+			grid-column: 7 / span 3;
+		}
+
+		.more-work__project-context {
+			grid-column: 10 / span 3;
+		}
+
+		.more-work__project-identity h3 {
+			font-size: clamp(2.25rem, 3vw, 2.8rem);
+			overflow-wrap: normal;
+		}
+	}
+</style>
