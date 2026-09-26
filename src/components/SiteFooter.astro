@@ -1,0 +1,90 @@
+<footer class="site-footer">
+	<div class="site-footer__inner">
+		<div class="site-footer__signature">
+			<p class="site-footer__name">Carlos Reyes</p>
+			<p class="site-footer__role">Full Stack Developer &amp; Systems Engineer</p>
+		</div>
+
+		<p class="site-footer__copyright">© 2026 Carlos Reyes</p>
+	</div>
+</footer>
+
+<style>
+	.site-footer__inner {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 28px 16px;
+		width: min(100%, var(--content-width));
+		margin: 0 auto;
+		padding: 38px var(--page-padding);
+		padding-bottom: max(38px, calc(env(safe-area-inset-bottom) + 24px));
+		border-top: 1px solid var(--color-border);
+	}
+
+	.site-footer__signature,
+	.site-footer__copyright {
+		grid-column: 1 / -1;
+	}
+
+	.site-footer__name,
+	.site-footer__role,
+	.site-footer__copyright {
+		margin: 0;
+	}
+
+	.site-footer__name {
+		color: var(--color-text);
+		font-family: var(--font-display);
+		font-size: 1rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		line-height: 1.4;
+		text-transform: uppercase;
+	}
+
+	.site-footer__role,
+	.site-footer__copyright {
+		color: var(--color-muted);
+		font-family: var(--font-ui);
+		font-size: 0.75rem;
+		line-height: 1.55;
+	}
+
+	.site-footer__role {
+		margin-top: 8px;
+	}
+
+	@media (min-width: 768px) {
+		.site-footer__inner {
+			grid-template-columns: repeat(8, minmax(0, 1fr));
+			column-gap: 20px;
+			align-items: end;
+			padding-top: 44px;
+			padding-bottom: max(44px, calc(env(safe-area-inset-bottom) + 24px));
+		}
+
+		.site-footer__signature {
+			grid-column: 1 / span 5;
+		}
+
+		.site-footer__copyright {
+			grid-column: 6 / span 3;
+			text-align: right;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.site-footer__inner {
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+			column-gap: clamp(24px, 2vw, 32px);
+		}
+
+		.site-footer__signature {
+			grid-column: 1 / span 7;
+		}
+
+		.site-footer__copyright {
+			grid-column: 9 / span 4;
+		}
+	}
+</style>

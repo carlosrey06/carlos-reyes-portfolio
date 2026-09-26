@@ -1046,13 +1046,37 @@ Preparar una entrada por certificación o curso, sin inventar certificaciones.
 
 ## Professional Links
 
-Para cada enlace deberemos poder registrar:
-
 ```yaml
-- name: MISSING
-  URL: MISSING
+- name: GitHub
+  value: https://github.com/carlosrey06
+  URL: https://github.com/carlosrey06
+  verification status: CONFIRMED
+  publication status: PUBLIC
+  source: Confirmación directa de Carlos
+  last verified: 25 de septiembre de 2026
+
+- name: LinkedIn
+  value: https://www.linkedin.com/in/carlos-reyes-03b95b2aa
+  URL: https://www.linkedin.com/in/carlos-reyes-03b95b2aa
+  verification status: CONFIRMED
+  publication status: PUBLIC
+  source: Confirmación directa de Carlos
+  last verified: 25 de septiembre de 2026
+
+- name: Phone
+  value: "9934263748"
+  URL: tel:9934263748
+  verification status: CONFIRMED
+  publication status: PUBLIC
+  source: Confirmación directa de Carlos
+  last verified: 25 de septiembre de 2026
+
+- name: Email
+  value: MISSING
   verification status: MISSING
   publication status: UNDECIDED
+  source: MISSING
+  last verified: MISSING
 ```
 
 No agregar URLs inventadas.
