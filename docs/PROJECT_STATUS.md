@@ -1,5 +1,7 @@
 # Carlos Reyes Portfolio — Project Status
 
+> Actualización del 19 de octubre de 2026: la home Astro incluye hero, navegación, proyectos destacados, tecnologías, experiencia, más proyectos, exploraciones conceptuales, infraestructura, método y contacto. También existe `/sobre-mi`, descarga local del CV, metadatos sociales y favicon CR. Véase [auditoría de migración](./MIGRATION_AUDIT.md). Las descripciones de “estado actual” más abajo documentan la fase de septiembre de 2026 y deben leerse como historial. Quedan pendientes capturas auténticas publicables, dominio canónico confirmado y revisión visual en navegador.
+
 ## Project Purpose
 
 Portafolio profesional de Carlos Reyes orientado principalmente a reclutadores y también a potenciales clientes.

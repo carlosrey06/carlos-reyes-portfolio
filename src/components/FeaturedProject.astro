@@ -1,71 +1,91 @@
 ---
 interface Props {
-	index: string;
 	name: string;
-	subtitle?: string;
-	projectType?: string;
+	projectType: string;
 	description: string;
 	status: string;
-	contribution: string;
+	contribution?: string;
 	technologies: string[];
 	url?: string;
 	domain?: string;
+	image: string;
+	imageSmall: string;
+	imageAlt: string;
+	stackIndex: number;
 }
 
-const { index, name, subtitle, projectType, description, status, contribution, technologies, url, domain } = Astro.props;
+const { name, projectType, description, status, contribution, technologies, url, domain, image, imageSmall, imageAlt, stackIndex } = Astro.props;
 ---
 
-<article class="featured-project">
-	<div class="featured-project__marker">
-		<span class="featured-project__index">{index}</span>
-		<span class="featured-project__status">{status}</span>
-	</div>
+<article
+	class="featured-project"
+	style={`--project-offset-mobile: ${stackIndex * 24}px; --project-offset-tablet: ${stackIndex * 44}px; --project-offset-desktop: ${stackIndex * 72}px; --project-layer: ${stackIndex + 1};`}
+>
+	<figure class="featured-project__cover">
+		<picture>
+			<source media="(max-width: 1023px)" srcset={imageSmall} type="image/webp" />
+			<img src={image} alt={imageAlt} width="1600" height="800" loading="lazy" decoding="async" />
+		</picture>
+	</figure>
 
-	<div class="featured-project__identity">
-		<h3 class="featured-project__name">{name}</h3>
-		{subtitle && <p class="featured-project__subtitle">{subtitle}</p>}
-		{projectType && <p class="featured-project__type">{projectType}</p>}
-	</div>
+	<div class="featured-project__content">
+		<div class="featured-project__identity">
+			<span class="featured-project__status">{status}</span>
+			<h3 class="featured-project__name">{name}</h3>
+			<p class="featured-project__type">{projectType}</p>
+		</div>
 
-	<div class="featured-project__summary">
-		<p class="featured-project__description">{description}</p>
-		<p class="featured-project__contribution">
-			<span>Participación</span>
-			<strong>{contribution}</strong>
-		</p>
-	</div>
+		<div class="featured-project__summary">
+			<p class="featured-project__description">{description}</p>
+			{contribution && <p class="featured-project__contribution">
+				<span>Participación</span>
+				<strong>{contribution}</strong>
+			</p>}
+		</div>
 
-	<div class="featured-project__details">
-		<p class="featured-project__details-label">Tecnologías</p>
-		<ul class="featured-project__stack" aria-label={`Tecnologías principales de ${name}`}>
-			{technologies.map((technology) => <li>{technology}</li>)}
-		</ul>
+		<div class="featured-project__details">
+			{technologies.length > 0 && <>
+				<p class="featured-project__details-label">Tecnologías</p>
+				<ul class="featured-project__stack" aria-label={`Tecnologías principales de ${name}`}>
+					{technologies.map((technology) => <li>{technology}</li>)}
+				</ul>
+			</>}
 
-		{url && (
-			<a
-				class="featured-project__link"
-				href={url}
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label={`Visitar el proyecto ${name} (se abre en una pestaña nueva)`}
-			>
-				<span class="featured-project__link-label">
-					Visitar proyecto <span class="featured-project__arrow" aria-hidden="true">↗</span>
-				</span>
-				{domain && <span class="featured-project__domain">{domain}</span>}
-			</a>
-		)}
+			{url && (
+				<a
+					class="featured-project__link"
+					href={url}
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label={`Visitar el proyecto ${name} (se abre en una pestaña nueva)`}
+				>
+					<span class="featured-project__link-label">
+						Visitar proyecto <span class="featured-project__arrow" aria-hidden="true">↗</span>
+					</span>
+					{domain && <span class="featured-project__domain">{domain}</span>}
+				</a>
+			)}
+		</div>
 	</div>
 </article>
 
 <style>
 	.featured-project {
-		position: relative;
+		--project-stack-start: 12px;
+		--project-top: calc(var(--header-height) + var(--project-stack-start) + var(--project-offset-mobile));
+		position: sticky;
+		top: var(--project-top);
+		z-index: var(--project-layer);
 		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
-		gap: 28px 16px;
-		padding-block: clamp(48px, 14vw, 64px);
+		grid-template-columns: minmax(0, 1fr);
+		gap: 22px;
+		padding: 22px 0 34px;
 		border-top: 1px solid var(--color-border);
+		background: var(--color-background);
+	}
+
+	.featured-project:focus-within {
+		z-index: 99;
 	}
 
 	.featured-project::before {
@@ -78,40 +98,55 @@ const { index, name, subtitle, projectType, description, status, contribution, t
 		content: '';
 	}
 
-	.featured-project__marker,
-	.featured-project__identity,
-	.featured-project__summary,
-	.featured-project__details {
-		grid-column: 1 / -1;
+	.featured-project__cover {
+		position: relative;
+		aspect-ratio: 2 / 1;
+		min-width: 0;
+		margin: 0;
+		overflow: hidden;
+		border: 1px solid var(--color-border);
+		background: var(--color-surface);
 	}
 
-	.featured-project__marker {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 16px;
+	.featured-project__cover picture,
+	.featured-project__cover img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
 	}
 
-	.featured-project__index,
+	.featured-project__cover img {
+		object-fit: cover;
+		object-position: center;
+		transition: transform 500ms cubic-bezier(.2, .7, .2, 1);
+	}
+
+	.featured-project__content {
+		align-self: center;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 20px;
+		min-width: 0;
+		padding: 4px 0 0;
+	}
+
 	.featured-project__status,
 	.featured-project__type,
 	.featured-project__details-label,
 	.featured-project__contribution span,
 	.featured-project__stack {
 		font-family: var(--font-ui);
-		font-size: 0.72rem;
-		letter-spacing: 0.1em;
+		font-size: .7rem;
+		letter-spacing: .09em;
 		line-height: 1.5;
 		text-transform: uppercase;
 	}
 
-	.featured-project__index {
-		color: var(--color-cyan);
-		font-weight: 700;
-	}
-
 	.featured-project__status {
-		color: var(--color-muted);
+		display: block;
+		margin-bottom: 12px;
+		color: var(--color-cyan);
 	}
 
 	.featured-project__name {
@@ -119,46 +154,34 @@ const { index, name, subtitle, projectType, description, status, contribution, t
 		margin: 0;
 		color: var(--color-text);
 		font-family: var(--font-display);
-		font-size: clamp(2.6rem, 13vw, 3.6rem);
+		font-size: clamp(2rem, 9vw, 3.3rem);
 		font-weight: 600;
-		letter-spacing: 0.035em;
-		line-height: 0.96;
+		letter-spacing: .025em;
+		line-height: 1.02;
 		overflow-wrap: anywhere;
-		text-transform: uppercase;
+		text-wrap: balance;
 	}
 
-	.featured-project__subtitle,
 	.featured-project__type {
 		max-width: 28rem;
-		margin: 14px 0 0;
+		margin: 12px 0 0;
 		color: var(--color-muted);
-	}
-
-	.featured-project__subtitle {
-		font-family: var(--font-ui);
-		font-size: 0.82rem;
-		letter-spacing: 0.035em;
-		line-height: 1.55;
-	}
-
-	.featured-project__type {
 		font-weight: 600;
 	}
 
 	.featured-project__description {
-		max-width: 36rem;
+		max-width: 37rem;
 		margin: 0;
 		color: var(--color-muted);
-		font-family: var(--font-ui);
-		font-size: clamp(1rem, 2vw, 1.08rem);
-		line-height: 1.7;
+		font-size: clamp(.98rem, 1.5vw, 1.06rem);
+		line-height: 1.65;
 	}
 
 	.featured-project__contribution {
 		display: flex;
 		flex-direction: column;
-		gap: 6px;
-		margin: 24px 0 0;
+		gap: 5px;
+		margin: 17px 0 0;
 	}
 
 	.featured-project__contribution span,
@@ -169,19 +192,24 @@ const { index, name, subtitle, projectType, description, status, contribution, t
 	.featured-project__contribution strong {
 		color: var(--color-text);
 		font-family: var(--font-ui);
-		font-size: 0.78rem;
+		font-size: .8rem;
 		font-weight: 600;
 		line-height: 1.5;
 	}
 
 	.featured-project__details-label {
-		margin: 0 0 10px;
+		margin: 0 0 9px;
+		font-family: var(--font-ui);
+		font-size: .7rem;
+		letter-spacing: .09em;
+		line-height: 1.5;
+		text-transform: uppercase;
 	}
 
 	.featured-project__stack {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 6px 0;
+		gap: 5px 0;
 		margin: 0;
 		padding: 0;
 		color: var(--color-text);
@@ -189,7 +217,7 @@ const { index, name, subtitle, projectType, description, status, contribution, t
 	}
 
 	.featured-project__stack li:not(:last-child)::after {
-		margin-inline: 8px;
+		margin-inline: 7px;
 		color: var(--color-cyan);
 		content: '/';
 	}
@@ -198,24 +226,22 @@ const { index, name, subtitle, projectType, description, status, contribution, t
 		display: inline-flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 7px;
+		gap: 6px;
 		max-width: 100%;
-		margin-top: 26px;
+		margin-top: 18px;
 		color: var(--color-text);
 		font-family: var(--font-ui);
-		font-size: 0.78rem;
+		font-size: .78rem;
 		font-weight: 600;
-		letter-spacing: 0.06em;
-		line-height: 1.35;
+		letter-spacing: .05em;
+		line-height: 1.4;
 		text-decoration: none;
 	}
 
 	.featured-project__link-label {
-		padding-bottom: 5px;
+		padding-bottom: 4px;
 		border-bottom: 1px solid var(--color-cyan);
-		transition:
-			border-color 180ms ease,
-			color 180ms ease;
+		transition: border-color 180ms ease, color 180ms ease;
 	}
 
 	.featured-project__arrow {
@@ -227,9 +253,9 @@ const { index, name, subtitle, projectType, description, status, contribution, t
 	.featured-project__domain {
 		max-width: 100%;
 		color: var(--color-muted);
-		font-size: 0.7rem;
+		font-size: .7rem;
 		font-weight: 400;
-		letter-spacing: 0.025em;
+		letter-spacing: .025em;
 		overflow-wrap: anywhere;
 	}
 
@@ -238,6 +264,10 @@ const { index, name, subtitle, projectType, description, status, contribution, t
 	}
 
 	@media (hover: hover) and (pointer: fine) {
+		.featured-project__cover:hover img {
+			transform: scale(1.02);
+		}
+
 		.featured-project__link:hover .featured-project__link-label {
 			border-color: var(--color-text);
 			color: var(--color-cyan);
@@ -248,80 +278,104 @@ const { index, name, subtitle, projectType, description, status, contribution, t
 		}
 	}
 
-	@media (prefers-reduced-motion: no-preference) {
-		.featured-project::before {
-			animation: project-rule-reveal 700ms ease-out both;
+	@media (max-width: 767px) {
+		.featured-project {
+			gap: 12px;
+			padding-block: 12px 18px;
+		}
+
+		.featured-project__status {
+			margin-bottom: 6px;
+		}
+
+		.featured-project__name {
+			font-size: clamp(1.65rem, 7.5vw, 2.1rem);
+		}
+
+		.featured-project__type {
+			margin-top: 6px;
+		}
+
+		.featured-project__content {
+			gap: 12px;
+		}
+
+		.featured-project__description {
+			font-size: .9rem;
+			line-height: 1.45;
+		}
+
+		.featured-project__contribution {
+			margin-top: 8px;
+		}
+
+		.featured-project__link {
+			min-height: 44px;
+			margin-top: 10px;
+			padding-block: 6px;
 		}
 	}
 
-	@keyframes project-rule-reveal {
-		from {
-			transform: scaleX(0);
-			transform-origin: left;
-		}
-
-		to {
-			transform: scaleX(1);
-			transform-origin: left;
+	@media (max-width: 1023px) {
+		.featured-project__link {
+			min-height: 44px;
+			padding-block: 4px;
 		}
 	}
 
 	@media (min-width: 768px) {
 		.featured-project {
-			grid-template-columns: repeat(12, minmax(0, 1fr));
-			gap: 36px clamp(18px, 2vw, 28px);
-			padding-block: clamp(56px, 8vw, 80px);
+			--project-stack-start: 16px;
+			--project-top: calc(var(--header-height) + var(--project-stack-start) + var(--project-offset-tablet));
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+			align-items: center;
+			gap: clamp(22px, 4vw, 52px);
+			padding-block: 28px 40px;
 		}
 
-		.featured-project__marker {
-			grid-column: 1 / span 2;
-			align-items: flex-start;
-			justify-content: flex-start;
-			flex-direction: column;
-			gap: 10px;
+		.featured-project__cover {
+			aspect-ratio: 2 / 1;
 		}
 
-		.featured-project__identity {
-			grid-column: 3 / span 5;
-		}
-
-		.featured-project__summary {
-			grid-column: 8 / span 5;
-		}
-
-		.featured-project__details {
-			grid-column: 3 / span 10;
-		}
-
-		.featured-project__name {
-			font-size: clamp(2.75rem, 4.3vw, 3.3rem);
-			overflow-wrap: normal;
+		.featured-project__content {
+			gap: 18px;
 		}
 	}
 
-	@media (min-width: 1100px) {
+	@media (min-width: 1024px) {
 		.featured-project {
-			column-gap: clamp(22px, 2vw, 32px);
+			--project-stack-start: 24px;
+			--project-top: calc(var(--header-height) + var(--project-stack-start) + var(--project-offset-desktop));
+			grid-template-columns: minmax(0, 1.16fr) minmax(0, .84fr);
+			gap: clamp(24px, 4vw, 64px);
+			padding-block: 24px 34px;
+			box-shadow: 0 -1px 0 var(--color-background);
 		}
 
-		.featured-project__identity {
-			grid-column: 3 / span 3;
+		.featured-project__cover {
+			aspect-ratio: 2 / 1;
 		}
 
-		.featured-project__summary {
-			grid-column: 6 / span 4;
-		}
-
-		.featured-project__details {
-			grid-column: 10 / span 3;
+		.featured-project__content {
+			gap: clamp(16px, 2vw, 24px);
 		}
 
 		.featured-project__name {
-			font-size: clamp(2.75rem, 4vw, 3.3rem);
+			font-size: clamp(2.3rem, 3.5vw, 3.35rem);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.featured-project {
+			position: relative;
+			top: auto;
+			z-index: auto;
 		}
 
-		.featured-project__description {
-			font-size: 1rem;
+		.featured-project__cover img,
+		.featured-project__link-label,
+		.featured-project__arrow {
+			transition: none;
 		}
 	}
 </style>

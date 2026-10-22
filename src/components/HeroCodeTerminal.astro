@@ -1,0 +1,388 @@
+---
+const lineSets = {
+	wide: [
+		'<span class="terminal__kw">type</span> Project = { id: <span class="terminal__type">string</span>; name: <span class="terminal__type">string</span>; status: <span class="terminal__type">\'active\' | \'draft\'</span> };',
+		'<span class="terminal__kw">export async function</span> <span class="terminal__function">getProjects</span>(status: Project[\'status\']) {',
+		'  <span class="terminal__kw">return</span> db.projects.findMany({ where: { status }, orderBy: createdAt });',
+		'}',
+		'<span class="terminal__comment">// Astro renderiza la vista en servidor y conserva tipos del dominio.</span>',
+		'<span class="terminal__kw">const</span> response = <span class="terminal__kw">await</span> fetch(<span class="terminal__string">\'/api/projects?status=active\'</span>);',
+		'<span class="terminal__kw">if</span> (!response.ok) <span class="terminal__kw">throw new</span> Error(<span class="terminal__string">\'No se pudo cargar proyectos\'</span>);',
+		'<span class="terminal__kw">const</span> projects: Project[] = <span class="terminal__kw">await</span> response.json();',
+		'defineConfig({ output: <span class="terminal__string">\'static\'</span>, format: <span class="terminal__string">\'directory\'</span> });',
+		'<span class="terminal__kw">const</span> pageData = <span class="terminal__kw">await</span> getProjects(<span class="terminal__string">\'active\'</span>);',
+		'<span class="terminal__kw">return</span> Response.json({ data: projects, count: projects.length });',
+		'<span class="terminal__ok">[astro]</span> route rendered · /projects · 14 ms · 8.4 kB',
+		'<span class="terminal__kw">SELECT</span> id, name, status, created_at <span class="terminal__kw">FROM</span> projects',
+		'<span class="terminal__kw">WHERE</span> status = <span class="terminal__string">\'active\'</span> <span class="terminal__kw">ORDER BY</span> created_at <span class="terminal__kw">DESC</span>;',
+		'<span class="terminal__kw">CREATE INDEX</span> idx_projects_status_created ON projects (status, created_at);',
+		'<span class="terminal__dim">[query]</span> prepared statement · 12 rows · connection returned to pool',
+		'<span class="terminal__ok">[sql]</span> transaction committed · 3 ms · rows affected: 12',
+		'<span class="terminal__dim">$</span> docker compose up -d --build web api postgres',
+		'<span class="terminal__ok">[compose]</span> web, api and postgres started · health checks passing',
+		'<span class="terminal__dim">$</span> docker compose logs --tail=20 api',
+		'<span class="terminal__ok">[node]</span> HTTP server listening on 0.0.0.0:4321 · env=production',
+		'<span class="terminal__kw">process</span>.on(<span class="terminal__string">\'SIGTERM\'</span>, <span class="terminal__kw">async</span> () =&gt; { <span class="terminal__kw">await</span> server.close(); });',
+		'<span class="terminal__dim">[linux]</span> graceful shutdown complete · worker pid 1842 · exit code 0',
+		'<span class="terminal__kw">GET</span> /api/projects?status=active <span class="terminal__ok">200</span> · 18 ms · application/json',
+		'<span class="terminal__kw">POST</span> /api/projects <span class="terminal__ok">201</span> · 26 ms · request validated',
+		'<span class="terminal__dim">[api]</span> response sent · content-length=1840 · cache-control=public, max-age=60',
+		'<span class="terminal__kw">const</span> payload = { data: projects, pagination: { page, pageSize, total } };',
+		'<span class="terminal__kw">return</span> Response.json(payload, { headers: { <span class="terminal__string">\'cache-control\'</span>: cachePolicy } });',
+		'<span class="terminal__ok">[health]</span> GET /health · 200 · database reachable · uptime 02:14:38',
+		'<span class="terminal__dim">[build]</span> transforming 42 modules · writing optimized assets to dist/',
+		'<span class="terminal__ok">[build]</span> completed · 2 pages · 0 errors · static output generated',
+		'<span class="terminal__dim">$</span> pnpm exec astro check && pnpm build',
+		'<span class="terminal__ok">[check]</span> TypeScript diagnostics: 0 · Astro components: valid',
+		'<span class="terminal__warn">[deploy]</span> validating runtime variables before container rollout',
+		'<span class="terminal__kw">const</span> server = createServer({ routes, middleware, requestTimeout: 8000 });',
+		'<span class="terminal__kw">await</span> server.listen({ host: <span class="terminal__string">\'0.0.0.0\'</span>, port: Number(process.env.PORT) });',
+		'<span class="terminal__ok">[node]</span> event loop ready · active handles: 4 · memory: 38 MB',
+		'<span class="terminal__comment">// El stream mantiene una fila por entrada y rota con un buffer acotado.</span>',
+	],
+	medium: [
+		'<span class="terminal__kw">type</span> Project = { id: string; name: string; status: Status };',
+		'<span class="terminal__kw">async function</span> <span class="terminal__function">getProjects</span>(status: Status) {',
+		'  <span class="terminal__kw">return</span> db.projects.findMany({ where: { status } });',
+		'}',
+		'<span class="terminal__comment">// Astro renderiza la vista en servidor con datos tipados.</span>',
+		'<span class="terminal__kw">const</span> response = <span class="terminal__kw">await</span> fetch(<span class="terminal__string">\'/api/projects?status=active\'</span>);',
+		'<span class="terminal__kw">if</span> (!response.ok) <span class="terminal__kw">throw new</span> Error(<span class="terminal__string">\'Request failed\'</span>);',
+		'<span class="terminal__kw">const</span> projects: Project[] = <span class="terminal__kw">await</span> response.json();',
+		'<span class="terminal__kw">export default</span> defineConfig({ output: <span class="terminal__string">\'static\'</span> });',
+		'<span class="terminal__kw">return</span> Response.json({ data: projects });',
+		'<span class="terminal__ok">[astro]</span> rendered /projects · 14 ms · 8.4 kB',
+		'<span class="terminal__kw">SELECT</span> id, name, status, created_at <span class="terminal__kw">FROM</span> projects;',
+		'<span class="terminal__kw">WHERE</span> status = <span class="terminal__string">\'active\'</span> <span class="terminal__kw">ORDER BY</span> created_at <span class="terminal__kw">DESC</span>;',
+		'<span class="terminal__kw">CREATE INDEX</span> idx_projects_status ON projects (status);',
+		'<span class="terminal__dim">[query]</span> prepared statement · 12 rows · pool returned',
+		'<span class="terminal__ok">[sql]</span> committed · 3 ms · rows affected: 12',
+		'<span class="terminal__dim">$</span> docker compose up -d --build web api db',
+		'<span class="terminal__ok">[compose]</span> web, api and db healthy · checks passing',
+		'<span class="terminal__dim">$</span> docker compose logs --tail=20 api',
+		'<span class="terminal__ok">[node]</span> listening on 0.0.0.0:4321 · production',
+		'<span class="terminal__kw">process</span>.on(<span class="terminal__string">\'SIGTERM\'</span>, () =&gt; server.close());',
+		'<span class="terminal__dim">[linux]</span> shutdown complete · pid 1842 · exit 0',
+		'<span class="terminal__kw">GET</span> /api/projects <span class="terminal__ok">200</span> · 18 ms · JSON',
+		'<span class="terminal__kw">POST</span> /api/projects <span class="terminal__ok">201</span> · 26 ms · validated',
+		'<span class="terminal__dim">[api]</span> response sent · 1840 bytes · cache 60 s',
+		'<span class="terminal__kw">const</span> payload = { data: projects, page, pageSize, total };',
+		'<span class="terminal__kw">return</span> Response.json(payload, { headers: cacheHeaders });',
+		'<span class="terminal__ok">[health]</span> /health · 200 · database reachable',
+		'<span class="terminal__dim">[build]</span> transforming modules · writing assets to dist/',
+		'<span class="terminal__ok">[build]</span> done · 2 pages · 0 errors',
+		'<span class="terminal__dim">$</span> pnpm exec astro check && pnpm build',
+		'<span class="terminal__ok">[check]</span> TypeScript diagnostics: 0 · components valid',
+		'<span class="terminal__warn">[deploy]</span> validating runtime environment before rollout',
+		'<span class="terminal__kw">const</span> server = createServer({ routes, timeout: 8000 });',
+		'<span class="terminal__kw">await</span> server.listen({ host: <span class="terminal__string">\'0.0.0.0\'</span>, port });',
+		'<span class="terminal__ok">[node]</span> event loop ready · 4 active handles · 38 MB',
+		'<span class="terminal__comment">// Una fila por entrada · buffer acotado y continuo.</span>',
+	],
+	compact: [
+		'<span class="terminal__kw">type</span> Project = { id: string }',
+		'<span class="terminal__kw">async function</span> <span class="terminal__function">getProjects</span>() {',
+		'  <span class="terminal__kw">return</span> db.projects.findMany();',
+		'}',
+		'<span class="terminal__comment">// Vista Astro con datos tipados.</span>',
+		'<span class="terminal__kw">const</span> res = <span class="terminal__kw">await</span> fetch(<span class="terminal__string">\'/projects\'</span>);',
+		'<span class="terminal__kw">if</span> (!response.ok) <span class="terminal__kw">throw</span> Error(<span class="terminal__string">\'failed\'</span>);',
+		'<span class="terminal__kw">const</span> projects = <span class="terminal__kw">await</span> response.json();',
+		'defineConfig({ output: <span class="terminal__string">\'static\'</span> });',
+		'<span class="terminal__kw">return</span> Response.json({ data: projects });',
+		'<span class="terminal__ok">[astro]</span> /projects · 14 ms',
+		'<span class="terminal__kw">SELECT</span> id, name, status <span class="terminal__kw">FROM</span> projects;',
+		'<span class="terminal__kw">WHERE</span> status = <span class="terminal__string">\'active\'</span> <span class="terminal__kw">ORDER BY</span> created_at;',
+		'<span class="terminal__kw">CREATE INDEX</span> idx_status ON projects(status);',
+		'<span class="terminal__dim">[query]</span> prepared · 12 rows · pooled',
+		'<span class="terminal__ok">[sql]</span> committed · 3 ms · 12 rows',
+		'<span class="terminal__dim">$</span> docker compose up -d --build',
+		'<span class="terminal__ok">[compose]</span> web, api, db healthy',
+		'<span class="terminal__dim">$</span> docker compose logs --tail=20 api',
+		'<span class="terminal__ok">[node]</span> listening · port 4321',
+		'<span class="terminal__kw">process</span>.on(<span class="terminal__string">\'SIGTERM\'</span>, close);',
+		'<span class="terminal__dim">[linux]</span> shutdown complete · exit 0',
+		'<span class="terminal__kw">GET</span> /api/projects <span class="terminal__ok">200</span> · 18 ms',
+		'<span class="terminal__kw">POST</span> /api/projects <span class="terminal__ok">201</span> · 26 ms',
+		'<span class="terminal__dim">[api]</span> response sent · 1840 bytes',
+		'<span class="terminal__kw">const</span> payload = { data: projects, page, total };',
+		'<span class="terminal__kw">return</span> Response.json(payload, { headers });',
+		'<span class="terminal__ok">[health]</span> /health · 200 · database reachable',
+		'<span class="terminal__dim">[build]</span> compiling modules · output: dist/',
+		'<span class="terminal__ok">[build]</span> done · 2 pages · 0 errors',
+		'<span class="terminal__dim">$</span> pnpm exec astro check && pnpm build',
+		'<span class="terminal__ok">[check]</span> TypeScript: 0 diagnostics',
+		'<span class="terminal__warn">[deploy]</span> runtime settings validated',
+		'<span class="terminal__kw">const</span> server = createServer({ routes, timeout: 8000 });',
+		'<span class="terminal__kw">await</span> server.listen({ host: <span class="terminal__string">\'0.0.0.0\'</span>, port });',
+		'<span class="terminal__ok">[node]</span> event loop ready · 4 handles',
+		'<span class="terminal__comment">// Stream continuo · buffer limitado.</span>',
+	],
+};
+
+const lineHeight = 25;
+const linePoolSize = 24;
+const lineMarkup = Array.from({ length: linePoolSize }, (_, index) => {
+	const content = lineSets.compact[index % lineSets.compact.length];
+	return `<span class="terminal__line">${content}</span>`;
+}).join('');
+---
+
+<div class="hero-code-terminal" data-code-terminal data-lines={JSON.stringify(lineSets)} aria-hidden="true">
+	<div class="terminal__prompt"><span class="terminal__prompt-mark">›</span> <span data-typing>pnpm build</span><span class="terminal__cursor"></span></div>
+	<div class="terminal__viewport" data-viewport>
+		<div class="terminal__stream" data-stream data-step={lineHeight} data-speed="20" set:html={lineMarkup}></div>
+	</div>
+</div>
+
+<script>
+	function initializeTerminal(root: HTMLElement) {
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const stream = root.querySelector<HTMLElement>('[data-stream]');
+		const viewport = root.querySelector<HTMLElement>('[data-viewport]');
+		if (!stream || !viewport) return () => undefined;
+	const lineSets = JSON.parse(root.dataset.lines ?? '{}') as Record<'wide' | 'medium' | 'compact', string[]>;
+
+		let visible = !('IntersectionObserver' in window);
+		let disposed = false;
+		let frame = 0;
+		let lastTime = 0;
+		let offset = 0;
+		let lineSequence = 0;
+		let bufferInitialized = false;
+		let step = Number(stream.dataset.step ?? 25);
+	let activeLines = lineSets.compact;
+		let typingElapsed = 0;
+		let typingPosition = 0;
+		let typingTarget = 0;
+		const typingOutput = root.querySelector<HTMLElement>('[data-typing]');
+		const commands = ['pnpm build', 'docker compose ps', 'SELECT id, name FROM projects', 'GET /api/projects'];
+		const canRun = () => !disposed && visible && !document.hidden && !reducedMotion.matches;
+		const selectLines = () => {
+			const width = stream.clientWidth;
+			const style = getComputedStyle(stream);
+			const font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+			const canvas = document.createElement('canvas');
+			const context = canvas.getContext('2d');
+			if (!context) return lineSets.compact;
+			context.font = font;
+			const fits = (lines: string[]) => lines.every((markup) => {
+				const template = document.createElement('template');
+				template.innerHTML = markup;
+				return context.measureText(template.content.textContent ?? '').width <= width;
+			});
+			return fits(lineSets.wide) ? lineSets.wide : fits(lineSets.medium) ? lineSets.medium : lineSets.compact;
+		};
+		const contentFor = (index: number) => activeLines[index % activeLines.length];
+		const updateLines = () => {
+			const nextLines = selectLines();
+			if (nextLines === activeLines) return;
+			activeLines = nextLines;
+			lineSequence = bufferInitialized ? stream.children.length : 0;
+			Array.from(stream.children).forEach((line, index) => {
+				(line as HTMLElement).innerHTML = contentFor(index);
+			});
+		};
+		const syncBuffer = () => {
+			updateLines();
+			const firstLine = stream.firstElementChild as HTMLElement | null;
+			const measuredHeight = firstLine?.getBoundingClientRect().height ?? 0;
+			if (measuredHeight > 0) step = measuredHeight;
+			if (viewport.clientHeight === 0 || step === 0) return;
+
+			const targetRows = Math.ceil(viewport.clientHeight / step) + 2;
+			while (stream.children.length < targetRows) {
+				const line = document.createElement('span');
+				line.className = 'terminal__line';
+				line.innerHTML = contentFor(bufferInitialized ? lineSequence : stream.children.length);
+				stream.append(line);
+				if (bufferInitialized) lineSequence += 1;
+			}
+			while (stream.children.length > targetRows) stream.lastElementChild?.remove();
+			if (!bufferInitialized) {
+				Array.from(stream.children).forEach((line, index) => {
+					(line as HTMLElement).innerHTML = contentFor(index);
+				});
+				lineSequence = stream.children.length;
+				bufferInitialized = true;
+			}
+		};
+
+		const tick = (time: number) => {
+			if (!canRun()) { frame = 0; lastTime = 0; return; }
+			const delta = lastTime ? Math.min(time - lastTime, 50) : 0;
+			lastTime = time;
+			offset += delta * Number(stream.dataset.speed ?? 20) / 1000;
+
+			while (offset >= step) {
+				offset -= step;
+				const first = stream.firstElementChild;
+				if (first) {
+					first.innerHTML = contentFor(lineSequence);
+					lineSequence += 1;
+					stream.append(first);
+				}
+			}
+
+			stream.style.setProperty('--stream-offset', `${-offset}px`);
+			if (typingOutput) {
+				typingElapsed += delta;
+				if (typingPosition < commands[typingTarget].length && typingElapsed >= 88) {
+					typingPosition += 1;
+					typingElapsed = 0;
+					typingOutput.textContent = commands[typingTarget].slice(0, typingPosition);
+				} else if (typingPosition === commands[typingTarget].length && typingElapsed >= 1250) {
+					typingTarget = (typingTarget + 1) % commands.length;
+					typingPosition = 0;
+					typingElapsed = 0;
+					typingOutput.textContent = '';
+				}
+			}
+			frame = window.requestAnimationFrame(tick);
+		};
+		const start = () => {
+			if (!canRun() || frame) return;
+			frame = window.requestAnimationFrame(tick);
+		};
+		const stop = () => {
+			if (frame) window.cancelAnimationFrame(frame);
+			frame = 0;
+			lastTime = 0;
+		};
+		const onChange = () => canRun() ? start() : stop();
+		let resizeObserver: ResizeObserver | undefined;
+		if ('ResizeObserver' in window) {
+			resizeObserver = new ResizeObserver(syncBuffer);
+			resizeObserver.observe(viewport);
+		} else {
+			window.addEventListener('resize', syncBuffer);
+		}
+		let observer: IntersectionObserver | undefined;
+		if ('IntersectionObserver' in window) {
+			observer = new IntersectionObserver(([entry]) => {
+				visible = entry.isIntersecting;
+				onChange();
+			}, { threshold: 0.01 });
+			observer.observe(root);
+		}
+		syncBuffer();
+		document.addEventListener('visibilitychange', onChange);
+		document.addEventListener('pagehide', stop, { once: true });
+		reducedMotion.addEventListener('change', onChange);
+		start();
+
+		return () => {
+			disposed = true;
+			stop();
+			observer?.disconnect();
+			resizeObserver?.disconnect();
+			window.removeEventListener('resize', syncBuffer);
+			document.removeEventListener('visibilitychange', onChange);
+			document.removeEventListener('pagehide', stop);
+			reducedMotion.removeEventListener('change', onChange);
+		};
+	}
+
+	const cleanups = Array.from(document.querySelectorAll<HTMLElement>('[data-code-terminal]'), initializeTerminal);
+	window.addEventListener('pagehide', () => cleanups.forEach((cleanup) => cleanup()), { once: true });
+</script>
+
+<style>
+	.hero-code-terminal {
+		--terminal-ink: #d8e0e7;
+		--terminal-cyan: #76d9e8;
+		--terminal-blue: #78aaf8;
+		--terminal-green: #81cda0;
+		--terminal-muted: #aeb9c4;
+		--terminal-font-size: clamp(0.72rem, 0.86vw, 0.88rem);
+		box-sizing: border-box;
+		display: grid;
+		grid-template-rows: auto minmax(0, 1fr);
+		width: min(calc(100% - (var(--page-padding) * 2)), var(--content-width));
+		height: clamp(210px, 58vw, 260px);
+		margin: 0 auto 30px;
+		min-width: 0;
+		min-height: 0;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	.terminal__prompt {
+		box-sizing: border-box;
+		max-width: 100%;
+		overflow: hidden;
+		padding: 16px clamp(12px, 1.5vw, 24px) 12px;
+		color: var(--terminal-ink);
+		font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: calc(var(--terminal-font-size) * 0.9);
+		line-height: 1.5;
+		white-space: nowrap;
+	}
+
+	.terminal__viewport {
+		min-width: 0;
+		min-height: 0;
+		overflow: hidden;
+		padding-inline: clamp(12px, 1.5vw, 24px);
+	}
+
+	.terminal__stream {
+		position: relative;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		overflow: visible;
+		transform: translate3d(0, var(--stream-offset, 0), 0);
+		will-change: transform;
+		font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: var(--terminal-font-size);
+		font-variant-ligatures: none;
+		line-height: 25px;
+	}
+
+	:global(.terminal__line) {
+		display: block;
+		box-sizing: border-box;
+		flex: 0 0 25px;
+		height: 25px;
+		overflow: visible;
+		color: var(--terminal-ink);
+		white-space: pre;
+	}
+
+	:global(.terminal__kw) { color: var(--terminal-blue); }
+	:global(.terminal__function), :global(.terminal__property) { color: var(--terminal-cyan); }
+	:global(.terminal__type) { color: #b5c7f0; }
+	:global(.terminal__string) { color: #a9c99d; }
+	:global(.terminal__bool) { color: #c6a9e8; }
+	:global(.terminal__comment), :global(.terminal__dim) { color: var(--terminal-muted); }
+	:global(.terminal__ok) { color: var(--terminal-green); }
+	:global(.terminal__warn) { color: #d7be83; }
+	:global(.terminal__stream b) { color: var(--terminal-green); font-weight: 500; }
+
+	.terminal__prompt-mark { margin-right: 6px; color: var(--terminal-cyan); }
+	.terminal__cursor { display: inline-block; width: 6px; height: 1em; margin-left: 4px; vertical-align: -0.14em; background: var(--terminal-cyan); opacity: 0.8; }
+
+	@media (min-width: 768px) and (max-width: 1023px) {
+		.hero-code-terminal { --terminal-font-size: 0.78rem; height: 280px; margin-bottom: 42px; }
+	}
+
+	@media (min-width: 1024px) {
+		.hero-code-terminal {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+		}
+	}
+
+	@media (max-width: 767px) {
+		.hero-code-terminal {
+			--terminal-font-size: clamp(0.65rem, 2.3vw, 0.76rem);
+		}
+		.terminal__prompt { padding-block: 12px 10px; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.terminal__cursor { opacity: 0.65; }
+	}
+</style>

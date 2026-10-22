@@ -1,0 +1,23 @@
+<section id="method" class="method" aria-labelledby="method-title">
+  <div class="section-shell method-inner">
+    <h2 id="method-title">Del problema<br />a la <em>solución.</em></h2>
+    <p class="method-lead">Escucho la necesidad, defino una estructura, desarrollo, pruebo y despliego. Una solución debe funcionar y poder mantenerse.</p>
+    <ol class="method-steps" aria-label="Etapas de trabajo">
+      <li><strong>Analizar</strong><p>Entender requerimientos y contexto.</p></li>
+      <li><strong>Diseñar</strong><p>Definir arquitectura e interacción.</p></li>
+      <li><strong>Construir</strong><p>Implementar, integrar y probar.</p></li>
+      <li><strong>Operar</strong><p>Desplegar, observar y mejorar.</p></li>
+    </ol>
+  </div>
+</section>
+<style>
+.method { padding-top:clamp(96px,14vw,172px); padding-bottom:clamp(48px,5vw,64px); background:var(--color-surface); }
+h2 { margin:0 0 28px; font:600 clamp(2.8rem,8vw,7rem)/1.02 var(--font-display); text-transform:uppercase; }
+h2 em { font:italic 400 1.08em var(--font-editorial); text-transform:none; }
+.method-lead { max-width:42rem; color:var(--color-muted); font-size:clamp(1rem,2vw,1.2rem); line-height:1.65; }
+.method-steps { display:grid; gap:0; margin:72px 0 0; padding:0; list-style:none; border-top:1px solid var(--color-border); }
+.method-steps li { padding:24px 0; border-bottom:1px solid var(--color-border); }
+.method-steps strong { font:600 1.15rem var(--font-ui); }
+.method-steps p { margin:10px 0 0; color:var(--color-muted); line-height:1.5; }
+@media(min-width:900px) { .method-steps { grid-template-columns:repeat(4,1fr); } .method-steps li { padding:24px; border-right:1px solid var(--color-border); } .method-steps li:first-child { padding-left:0; } .method-steps li:last-child { border-right:0; } .method-steps strong { display:block; } }
+</style>

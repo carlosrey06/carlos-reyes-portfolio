@@ -1,57 +1,19 @@
 ---
-interface Project {
-	index: string;
-	name: string;
-	description: string;
-	label: string;
-	technologies: string[];
-	attribution?: string;
-	url?: string;
-	domain?: string;
-}
-
-const projects: Project[] = [
-	{
-		index: '01',
-		name: 'P.U.L.S.E.',
-		description: 'Automatización para procesamiento, validación y actualización controlada de información de precios.',
-		label: 'EN PRODUCCIÓN',
-		technologies: ['Google Apps Script', 'Google Sheets', 'Google Drive', 'JavaScript', 'Slack'],
-	},
-	{
-		index: '02',
-		name: 'IMXTime',
-		description: 'Sistema interno para control de asistencia, jornadas, horarios, vacaciones e incidencias.',
-		label: 'EN PRODUCCIÓN',
-		technologies: ['Node.js', 'Express', 'MySQL', 'Sequelize', 'Docker Compose'],
-	},
-	{
-		index: '03',
-		name: 'YollotDP',
-		description: 'Iniciativa tecnológica cofundada para desarrollar soluciones digitales y software a medida.',
-		label: 'INICIATIVA',
-		technologies: ['PHP', 'Laravel', 'MySQL', 'Tailwind CSS', 'Docker', 'Nginx'],
-		attribution: 'Cofundador · Full Stack Developer',
-		url: 'https://yollotdp.com/',
-		domain: 'yollotdp.com',
-	},
-	{
-		index: '04',
-		name: 'Cadebot L100',
-		description: 'Landing page comercial para el robot de servicio Cadebot L100.',
-		label: 'EN PRODUCCIÓN',
-		technologies: ['HTML', 'CSS', 'JavaScript'],
-		attribution: 'Desarrollo integral',
-		url: 'https://importacionesamexico.com.mx/cadebot',
-		domain: 'importacionesamexico.com.mx/cadebot',
-	},
-];
+import { moreProjects } from '../data/portfolio';
+const projects = moreProjects.map((project) => ({
+  name: project.name,
+  description: project.description,
+  label: project.status,
+  technologies: project.technologies,
+  attribution: 'contribution' in project ? project.contribution : undefined,
+  url: 'url' in project ? project.url : undefined,
+  domain: 'url' in project ? new URL(project.url).host : undefined,
+}));
 ---
 
 <section id="more-work" class="more-work" aria-labelledby="more-work-title">
 	<div class="more-work__inner">
 		<header class="more-work__header">
-			<p class="more-work__eyebrow">03 / MÁS PROYECTOS</p>
 			<h2 id="more-work-title">
 				<span>Otros</span>
 				<span>proyectos</span>
@@ -62,17 +24,13 @@ const projects: Project[] = [
 			{
 				projects.map((project) => (
 					<li class="more-work__project">
-						<div class="more-work__project-marker">
-							<span class="more-work__project-index">{project.index}</span>
-							<span class="more-work__project-label">{project.label}</span>
-						</div>
-
 						<div class="more-work__project-identity">
+							<span class="more-work__project-label">{project.label}</span>
 							<h3>{project.name}</h3>
 							<p>{project.description}</p>
 						</div>
 
-						<div class="more-work__project-technologies">
+						<div class:list={['more-work__project-technologies', !(project.attribution || project.url) && 'more-work__project-technologies--wide']}>
 							<p>Tecnologías</p>
 							<ul aria-label={`Tecnologías principales de ${project.name}`}>
 								{project.technologies.map((technology) => <li>{technology}</li>)}
@@ -105,7 +63,7 @@ const projects: Project[] = [
 
 <style>
 	.more-work {
-		padding: 0 0 clamp(104px, 16vw, 160px);
+		padding: 0 0 clamp(80px, 14vw, 96px);
 	}
 
 	.more-work__inner {
@@ -116,17 +74,6 @@ const projects: Project[] = [
 
 	.more-work__header {
 		margin-bottom: clamp(48px, 10vw, 64px);
-	}
-
-	.more-work__eyebrow {
-		margin: 0 0 18px;
-		color: var(--color-cyan);
-		font-family: var(--font-ui);
-		font-size: 0.72rem;
-		font-weight: 600;
-		letter-spacing: 0.12em;
-		line-height: 1.4;
-		text-transform: uppercase;
 	}
 
 	.more-work h2 {
@@ -163,21 +110,12 @@ const projects: Project[] = [
 		border-top: 1px solid var(--color-border);
 	}
 
-	.more-work__project-marker,
 	.more-work__project-identity,
 	.more-work__project-technologies,
 	.more-work__project-context {
 		grid-column: 1 / -1;
 	}
 
-	.more-work__project-marker {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 20px;
-	}
-
-	.more-work__project-index,
 	.more-work__project-label,
 	.more-work__project-technologies > p,
 	.more-work__project-technologies ul {
@@ -188,15 +126,12 @@ const projects: Project[] = [
 		text-transform: uppercase;
 	}
 
-	.more-work__project-index {
-		color: var(--color-cyan);
-		font-weight: 700;
-	}
-
 	.more-work__project-label,
 	.more-work__project-technologies > p {
 		color: var(--color-muted);
 	}
+
+	.more-work__project-label { display:block; margin-bottom:12px; }
 
 	.more-work__project-identity h3 {
 		margin: 0;
@@ -319,7 +254,7 @@ const projects: Project[] = [
 
 	@media (min-width: 768px) {
 		.more-work {
-			padding-bottom: clamp(128px, 14vw, 176px);
+			padding-bottom: clamp(112px, 10vw, 136px);
 		}
 
 		.more-work__header {
@@ -336,22 +271,13 @@ const projects: Project[] = [
 			padding-block: 48px;
 		}
 
-		.more-work__project-marker {
-			grid-column: 1 / span 2;
-			align-items: flex-start;
-			justify-content: flex-start;
-			flex-direction: column;
-			gap: 9px;
-		}
-
 		.more-work__project-identity {
-			grid-column: 3 / span 6;
+			grid-column: 1 / span 8;
 		}
 
-		.more-work__project-technologies,
-		.more-work__project-context {
-			grid-column: 3 / span 6;
-		}
+		.more-work__project-technologies { grid-column: 1 / span 4; }
+		.more-work__project-technologies--wide { grid-column: 1 / -1; }
+		.more-work__project-context { grid-column: 5 / span 4; }
 
 		.more-work__project-identity h3 {
 			font-size: clamp(2.2rem, 4.8vw, 2.8rem);
@@ -365,20 +291,17 @@ const projects: Project[] = [
 			padding-block: clamp(44px, 4vw, 56px);
 		}
 
-		.more-work__project-marker {
-			grid-column: 1;
-		}
-
 		.more-work__project-identity {
-			grid-column: 2 / span 5;
+			grid-column: 1 / span 5;
 		}
 
 		.more-work__project-technologies {
-			grid-column: 7 / span 3;
+			grid-column: 6 / span 3;
 		}
+		.more-work__project-technologies--wide { grid-column: 6 / -1; }
 
 		.more-work__project-context {
-			grid-column: 10 / span 3;
+			grid-column: 9 / span 4;
 		}
 
 		.more-work__project-identity h3 {

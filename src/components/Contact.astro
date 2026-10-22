@@ -1,7 +1,9 @@
+---
+import { contact } from '../data/portfolio';
+---
 <section id="contact" class="contact" aria-labelledby="contact-title">
 	<div class="contact__inner">
 		<header class="contact__header">
-			<p class="contact__eyebrow">05 / CONTACTO</p>
 			<h2 id="contact-title">
 				<span>¿Tienes una idea</span>
 				<span>o un proyecto?</span>
@@ -12,9 +14,14 @@
 		</header>
 
 		<div class="contact__channels" aria-label="Canales de contacto">
+			<a class="contact__channel" href={`mailto:${contact.email}?subject=Contacto%20desde%20el%20portafolio`}>
+				<span class="contact__channel-label">Correo</span>
+				<span class="contact__channel-value">{contact.email}</span>
+				<span class="contact__channel-arrow" aria-hidden="true">↗</span>
+			</a>
 			<a
 				class="contact__channel"
-				href="https://github.com/carlosrey06"
+				href={contact.github}
 				target="_blank"
 				rel="noopener noreferrer"
 				aria-label="Visitar el perfil de GitHub de Carlos Reyes (se abre en una pestaña nueva)"
@@ -26,7 +33,7 @@
 
 			<a
 				class="contact__channel"
-				href="https://www.linkedin.com/in/carlos-reyes-03b95b2aa"
+				href={contact.linkedin}
 				target="_blank"
 				rel="noopener noreferrer"
 				aria-label="Visitar el perfil de LinkedIn de Carlos Reyes (se abre en una pestaña nueva)"
@@ -39,7 +46,7 @@
 
 			<a
 				class="contact__channel"
-				href="tel:9934263748"
+				href={contact.phone}
 				aria-label="Llamar a Carlos Reyes al 993 426 3748"
 			>
 				<span class="contact__channel-label">Teléfono</span>
@@ -52,7 +59,7 @@
 
 <style>
 	.contact {
-		padding: 0 0 clamp(104px, 18vw, 152px);
+		padding: 48px 0 clamp(80px, 14vw, 96px);
 	}
 
 	.contact__inner {
@@ -72,17 +79,6 @@
 
 	.contact__header {
 		max-width: 48rem;
-	}
-
-	.contact__eyebrow {
-		margin: 0 0 18px;
-		color: var(--color-cyan);
-		font-family: var(--font-ui);
-		font-size: 0.72rem;
-		font-weight: 600;
-		letter-spacing: 0.12em;
-		line-height: 1.4;
-		text-transform: uppercase;
 	}
 
 	.contact h2 {
@@ -197,7 +193,8 @@
 
 	@media (min-width: 768px) {
 		.contact {
-			padding-bottom: clamp(128px, 14vw, 176px);
+			padding-top: 64px;
+			padding-bottom: clamp(112px, 10vw, 136px);
 		}
 
 		.contact__inner {
@@ -206,11 +203,11 @@
 		}
 
 		.contact__header {
-			grid-column: 1 / span 7;
+			grid-column: 1 / -1;
 		}
 
 		.contact__channels {
-			grid-column: 2 / span 7;
+			grid-column: 1 / -1;
 		}
 
 		.contact h2 {
@@ -219,6 +216,10 @@
 	}
 
 	@media (min-width: 1024px) {
+		.contact {
+			padding-top: clamp(96px, 8vw, 112px);
+		}
+
 		.contact__inner {
 			grid-template-columns: repeat(12, minmax(0, 1fr));
 			column-gap: clamp(24px, 2vw, 32px);
@@ -230,13 +231,13 @@
 		}
 
 		.contact__channels {
-			grid-column: 9 / span 4;
+			grid-column: 8 / span 5;
 			grid-row: 1;
-			align-self: end;
+			align-self: start;
 		}
 
 		.contact h2 {
-			font-size: clamp(3rem, 5vw, 4.5rem);
+			font-size: clamp(2.6rem, 4vw, 4rem);
 		}
 	}
 </style>

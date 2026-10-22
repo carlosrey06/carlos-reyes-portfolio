@@ -1,5 +1,7 @@
 # Carlos Reyes Portfolio — Roadmap
 
+> Actualización del 19 de octubre de 2026: se implementó una primera integración completa en Astro de home y `/sobre-mi`, con trayectoria, método, CV, contacto y recursos seleccionados de V2. La auditoría está en [MIGRATION_AUDIT.md](./MIGRATION_AUDIT.md). La revisión visual con navegador, capturas auténticas y dominio final siguen pendientes. El checklist inferior conserva el plan histórico y aún requiere reconciliación de checkpoints.
+
 Checklist vivo del proyecto. Los checkpoints describen intención y progreso actual; no constituyen una arquitectura inmutable. El roadmap puede evolucionar mediante decisiones explícitas.
 
 ## Completed

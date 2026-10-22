@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs><radialGradient id="field"><stop stop-color="#1b3144"/><stop offset="1" stop-color="#07090d"/></radialGradient></defs>
+  <rect width="1200" height="630" fill="url(#field)"/>
+  <g fill="none" stroke="#06b6d4" stroke-opacity=".25"><circle cx="1020" cy="280" r="240"/><ellipse cx="1020" cy="280" rx="340" ry="120" transform="rotate(-28 1020 280)"/></g>
+  <path d="M64 90h1072M64 548h1072" stroke="#526274"/>
+  <text x="65" y="153" fill="#06b6d4" font-family="Arial,sans-serif" font-size="20" letter-spacing="5">CARLOS EDUARDO REYES CRUZ</text>
+  <text x="60" y="335" fill="#f5f7fa" font-family="Georgia,serif" font-size="105">CARLOS REYES</text>
+  <text x="65" y="412" fill="#f5f7fa" font-family="Arial,sans-serif" font-size="34">Full Stack Developer &amp; Systems Engineer</text>
+  <text x="65" y="588" fill="#a7b0bc" font-family="Arial,sans-serif" font-size="19" letter-spacing="3">DESARROLLO WEB · SISTEMAS · INFRAESTRUCTURA</text>
+</svg>

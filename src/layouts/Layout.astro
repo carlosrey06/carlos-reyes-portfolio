@@ -1,28 +1,40 @@
 ---
 import '../styles/global.css';
-
-const title = 'Carlos Reyes — Full Stack Developer & Systems Engineer';
-const description =
-	'Desarrollo aplicaciones web completas y la infraestructura necesaria para llevarlas a producción de forma segura y mantenible.';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+interface Props { title?: string; description?: string; }
+const title = Astro.props.title ?? 'Carlos Eduardo Reyes Cruz — Desarrollador Full Stack e Ingeniero en Sistemas Computacionales';
+const description = Astro.props.description ?? 'Carlos Reyes desarrolla aplicaciones web completas y la infraestructura necesaria para llevarlas a producción de forma segura y mantenible.';
+const canonical = import.meta.env.PUBLIC_SITE_URL ? new URL(Astro.url.pathname, import.meta.env.PUBLIC_SITE_URL).toString() : undefined;
+const ogImage = import.meta.env.PUBLIC_SITE_URL ? new URL('/og-cover.png', import.meta.env.PUBLIC_SITE_URL).toString() : undefined;
 ---
-
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap"
-			rel="stylesheet"
-		/>
-		<meta name="description" content={description} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#07090d" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Carlos Eduardo Reyes Cruz" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {canonical && <meta property="og:url" content={canonical} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
+    <slot />
+    <FloatingWhatsApp />
+  </body>
 </html>

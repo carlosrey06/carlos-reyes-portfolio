@@ -1,56 +1,29 @@
 ---
 import FeaturedProject from './FeaturedProject.astro';
+import { featuredProjects } from '../data/portfolio';
 ---
 
-<section class="featured-work" aria-labelledby="featured-work-title">
+<section id="projects" class="featured-work" aria-labelledby="featured-work-title">
 	<div class="featured-work__inner">
 		<header class="featured-work__header">
-			<p class="featured-work__eyebrow">01 / PROYECTOS</p>
 			<h2 id="featured-work-title">Proyectos destacados</h2>
 		</header>
 
 		<div class="featured-work__list">
-			<FeaturedProject
-				index="01"
-				name="Frío Puro"
-				description="Sitio corporativo y plataforma de contenido desarrollada de extremo a extremo y llevada a producción."
-				status="EN PRODUCCIÓN"
-				contribution="Desarrollo integral"
-				technologies={['Astro', 'TypeScript', 'MySQL', 'Drizzle ORM', 'Docker', 'Traefik']}
-				domain="friopuro.com.mx"
-				url="https://friopuro.com.mx"
-			/>
-
-			<FeaturedProject
-				index="02"
-				name="Sellers"
-				description="Plataforma B2B orientada a sellers, proveedores y marcas interesadas en comercializar productos en México."
-				status="EN PRODUCCIÓN"
-				contribution="Desarrollo colaborativo"
-				technologies={['Astro', 'TypeScript', 'SSR', 'MySQL', 'Docker', 'Traefik']}
-				domain="sellers.importacionesamexico.com.mx"
-				url="https://sellers.importacionesamexico.com.mx"
-			/>
-
-			<FeaturedProject
-				index="03"
-				name="V.A.U.L.T."
-				subtitle="Virtual Asset & Unified Logistics Tracker"
-				description="Sistema multiempresa para inventario, administración y trazabilidad de activos."
-				status="EN DESARROLLO"
-				contribution="Desarrollo integral"
-				technologies={['React', 'TypeScript', 'NestJS', 'MySQL', 'Drizzle ORM', 'Docker']}
-			/>
-
-			<FeaturedProject
-				index="04"
-				name="ARCH"
-				projectType="Proyecto personal"
-				description="Plataforma personal de gestión financiera enfocada en organizar cuentas, movimientos y obligaciones."
-				status="EN DESARROLLO"
-				contribution="Desarrollo integral"
-				technologies={['Next.js', 'TypeScript', 'MySQL', 'Drizzle ORM', 'Better Auth', 'Docker']}
-			/>
+			{featuredProjects.map((project, index) => <FeaturedProject
+				name={project.name}
+				projectType={project.type}
+				description={project.description}
+				status={project.status}
+				contribution={'contribution' in project ? project.contribution : undefined}
+				technologies={'technologies' in project ? [...project.technologies] : []}
+				url={'url' in project ? project.url : undefined}
+				domain={'domain' in project ? project.domain : undefined}
+				image={project.image}
+				imageSmall={project.imageSmall}
+				imageAlt={project.imageAlt}
+				stackIndex={index}
+			/>)}
 		</div>
 	</div>
 </section>
@@ -58,7 +31,7 @@ import FeaturedProject from './FeaturedProject.astro';
 <style>
 	.featured-work {
 		position: relative;
-		padding: clamp(56px, 10vw, 72px) 0 clamp(80px, 12vw, 144px);
+		padding: clamp(64px, 10vw, 80px) 0 clamp(80px, 12vw, 144px);
 		background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--color-surface) 24%, transparent) 30%, transparent 100%);
 	}
 
@@ -72,17 +45,6 @@ import FeaturedProject from './FeaturedProject.astro';
 	.featured-work__header {
 		max-width: 42rem;
 		margin-bottom: clamp(48px, 8vw, 88px);
-	}
-
-	.featured-work__eyebrow {
-		margin: 0 0 18px;
-		color: var(--color-cyan);
-		font-family: var(--font-ui);
-		font-size: 0.72rem;
-		font-weight: 600;
-		letter-spacing: 0.12em;
-		line-height: 1.4;
-		text-transform: uppercase;
 	}
 
 	.featured-work h2 {
@@ -102,7 +64,7 @@ import FeaturedProject from './FeaturedProject.astro';
 
 	@media (min-width: 768px) {
 		.featured-work {
-			padding-top: clamp(112px, 12vw, 176px);
+			padding-top: clamp(104px, 10vw, 136px);
 		}
 
 		.featured-work__header {

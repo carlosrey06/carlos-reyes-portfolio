@@ -1,34 +1,44 @@
 ---
+const iconSlugs: Record<string, string> = {
+	HTML: 'html5', CSS: 'css', JavaScript: 'javascript', TypeScript: 'typescript', React: 'react',
+	'Next.js': 'nextdotjs', Astro: 'astro', 'Tailwind CSS': 'tailwindcss', 'Node.js': 'nodedotjs',
+	Express: 'express', NestJS: 'nestjs', PHP: 'php', Laravel: 'laravel', CodeIgniter: 'codeigniter',
+	Livewire: 'livewire', MySQL: 'mysql', 'Drizzle ORM': 'drizzle', Sequelize: 'sequelize',
+	Linux: 'linux', Docker: 'docker', 'Docker Compose': 'docker', Traefik: 'traefikproxy',
+	Nginx: 'nginx', Vercel: 'vercel', Vitest: 'vitest', Git: 'git',
+	'Google Apps Script': 'googleappsscript', Zod: 'zod',
+};
+
 const categories = [
 	{
-		index: '01',
+		id: 'frontend',
 		name: 'Frontend',
-		technologies: ['Astro', 'React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS'],
+		technologies: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Astro', 'Tailwind CSS'],
 	},
 	{
-		index: '02',
+		id: 'backend',
 		name: 'Backend',
-		technologies: ['Node.js', 'NestJS', 'PHP', 'Laravel', 'CodeIgniter', 'Livewire'],
+		technologies: ['Node.js', 'Express', 'NestJS', 'PHP', 'Laravel', 'CodeIgniter', 'Livewire'],
 	},
 	{
-		index: '03',
+		id: 'data',
 		name: 'Datos',
 		technologies: ['MySQL', 'Oracle', 'Drizzle ORM', 'Sequelize'],
 	},
 	{
-		index: '04',
+		id: 'infrastructure',
 		name: 'Infraestructura',
-		technologies: ['Linux', 'Docker', 'Docker Compose', 'Traefik', 'Nginx', 'SSH', 'Vercel'],
+		technologies: ['Linux', 'Docker', 'Docker Compose', 'Traefik', 'Nginx', 'SSH', 'Vercel', 'Git'],
 	},
 	{
-		index: '05',
+		id: 'security-quality',
 		name: 'Seguridad & Calidad',
 		technologies: ['Better Auth', 'JWT', 'RBAC', 'Zod', 'Vitest', 'Playwright'],
 	},
 	{
-		index: '06',
+		id: 'automation',
 		name: 'Automatización',
-		technologies: ['Google Apps Script', 'ExcelJS', 'Webhooks'],
+		technologies: ['Google Apps Script', 'ExcelJS'],
 	},
 ];
 ---
@@ -36,7 +46,6 @@ const categories = [
 <section id="stack" class="tech-stack" aria-labelledby="tech-stack-title">
 	<div class="tech-stack__inner">
 		<header class="tech-stack__header">
-			<p class="tech-stack__eyebrow">02 / TECNOLOGÍAS</p>
 			<h2 id="tech-stack-title">Tecnologías</h2>
 			<p class="tech-stack__statement">Construir, integrar y desplegar.</p>
 		</header>
@@ -44,13 +53,12 @@ const categories = [
 		<div class="tech-stack__categories">
 			{
 				categories.map((category) => (
-					<section class="tech-category" aria-labelledby={`tech-category-${category.index}`}>
-						<span class="tech-category__index" aria-hidden="true">{category.index}</span>
-						<h3 id={`tech-category-${category.index}`} class="tech-category__title">
+					<section class="tech-category" aria-labelledby={`tech-category-${category.id}`}>
+						<h3 id={`tech-category-${category.id}`} class="tech-category__title">
 							{category.name}
 						</h3>
 						<ul class="tech-category__list">
-							{category.technologies.map((technology) => <li>{technology}</li>)}
+							{category.technologies.map((technology) => <li>{iconSlugs[technology] && <img src={`/icons/${iconSlugs[technology]}.svg`} alt="" width="17" height="17" loading="lazy" decoding="async" />}{technology}</li>)}
 						</ul>
 					</section>
 				))
@@ -81,17 +89,6 @@ const categories = [
 	.tech-stack__header {
 		max-width: 38rem;
 		margin-bottom: 56px;
-	}
-
-	.tech-stack__eyebrow {
-		margin: 0 0 18px;
-		color: var(--color-cyan);
-		font-family: var(--font-ui);
-		font-size: 0.72rem;
-		font-weight: 600;
-		letter-spacing: 0.12em;
-		line-height: 1.4;
-		text-transform: uppercase;
 	}
 
 	.tech-stack h2 {
@@ -128,18 +125,8 @@ const categories = [
 		border-bottom: 1px solid var(--color-border);
 	}
 
-	.tech-category__index {
-		grid-column: 1;
-		color: var(--color-cyan);
-		font-family: var(--font-ui);
-		font-size: 0.72rem;
-		font-weight: 700;
-		letter-spacing: 0.1em;
-		line-height: 1.5;
-	}
-
 	.tech-category__title {
-		grid-column: 2 / -1;
+		grid-column: 1 / -1;
 		margin: 0;
 		color: var(--color-muted);
 		font-family: var(--font-ui);
@@ -167,8 +154,11 @@ const categories = [
 	}
 
 	.tech-category__list li {
+		display:inline-flex;
+		align-items:center;
 		white-space: nowrap;
 	}
+	.tech-category__list img { display:inline-block; flex:none; margin-right:6px; }
 
 	.tech-category__list li:not(:last-child)::after {
 		margin-inline: 9px;
@@ -196,7 +186,7 @@ const categories = [
 
 	@media (min-width: 768px) {
 		.tech-stack {
-			padding-bottom: clamp(120px, 14vw, 176px);
+			padding-bottom: clamp(112px, 10vw, 136px);
 		}
 
 		.tech-stack__inner {
@@ -228,12 +218,8 @@ const categories = [
 			padding-block: 36px;
 		}
 
-		.tech-category__title {
-			grid-column: 2 / -1;
-		}
-
 		.tech-category__list {
-			grid-column: 2 / -1;
+			grid-column: 1 / -1;
 			font-size: 1rem;
 		}
 	}
@@ -270,11 +256,11 @@ const categories = [
 		}
 
 		.tech-category__title {
-			grid-column: 2 / span 2;
+			grid-column: 1 / span 2;
 		}
 
 		.tech-category__list {
-			grid-column: 4 / span 4;
+			grid-column: 3 / span 5;
 			margin-top: 0;
 		}
 	}

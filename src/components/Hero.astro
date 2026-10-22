@@ -1,6 +1,8 @@
-<section class="hero" aria-labelledby="hero-name">
-	<div class="hero__atmosphere" aria-hidden="true"></div>
-
+---
+import { contact } from '../data/portfolio';
+import HeroCodeTerminal from './HeroCodeTerminal.astro';
+---
+<section id="home" class="hero" aria-labelledby="hero-name">
 	<div class="hero__inner">
 		<p class="hero__title">
 			<span>FULL STACK DEVELOPER</span>
@@ -18,17 +20,17 @@
 		</p>
 
 		<div class="hero__actions" aria-label="Acciones principales">
-			<!-- Pending wiring: the projects destination does not exist yet. -->
-			<button class="hero__cta hero__cta--primary" type="button" disabled data-pending-cta="projects">
+			<a class="hero__cta hero__cta--primary" href="#projects">
 				Ver proyectos
-			</button>
+			</a>
 
-			<!-- Pending wiring: the final CV asset does not exist in public/ yet. -->
-			<button class="hero__cta hero__cta--secondary" type="button" disabled data-pending-cta="cv">
+			<a class="hero__cta hero__cta--secondary" href={contact.cv} download>
 				Descargar CV
-			</button>
+			</a>
 		</div>
 	</div>
+
+	<HeroCodeTerminal />
 </section>
 
 <style>
@@ -38,55 +40,20 @@
 		display: flex;
 		min-height: auto;
 		overflow: hidden;
+		flex-direction: column;
 		align-items: stretch;
 	}
 
-	.hero::before {
-		position: absolute;
-		z-index: -2;
-		top: 18%;
-		right: -48vw;
-		width: 120vw;
-		height: 120vw;
-		border: 1px solid color-mix(in srgb, var(--color-cyan) 18%, transparent);
-		border-radius: 50%;
-		content: '';
-		opacity: 0.7;
-		transform: rotate(-12deg);
-	}
-
-	.hero::after {
-		position: absolute;
-		z-index: -1;
-		top: 28%;
-		left: var(--page-padding);
-		width: min(38vw, 240px);
-		height: 1px;
-		background: linear-gradient(90deg, var(--color-border), transparent);
-		content: '';
-		opacity: 0.8;
-	}
-
-	.hero__atmosphere {
-		position: absolute;
-		z-index: -1;
-		display: none;
-		right: 13%;
-		bottom: 20%;
-		width: 22px;
-		height: 22px;
-		border: 1px solid color-mix(in srgb, var(--color-gold) 42%, transparent);
-		transform: rotate(45deg);
-	}
-
 	.hero__inner {
+		position: relative;
+		z-index: 1;
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		width: min(100%, var(--content-width));
 		margin: 0 auto;
-		padding: 48px var(--page-padding) 24px;
+		padding: 48px var(--page-padding) 32px;
 	}
 
 	.hero__title {
@@ -147,6 +114,9 @@
 	}
 
 	.hero__cta {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 		min-height: 52px;
 		padding: 14px 20px;
 		border: 1px solid transparent;
@@ -156,6 +126,7 @@
 		font-weight: 600;
 		line-height: 1.2;
 		text-align: center;
+		text-decoration: none;
 		transition:
 			background-color 180ms ease,
 			border-color 180ms ease,
@@ -170,6 +141,10 @@
 	.hero__cta--primary {
 		background: var(--color-blue);
 		color: var(--color-text);
+	}
+
+	.hero__cta--primary:hover {
+		background: color-mix(in srgb, var(--color-blue) 84%, var(--color-cyan));
 	}
 
 	.hero__cta--secondary {
@@ -221,18 +196,7 @@
 
 	@media (min-width: 768px) and (max-width: 1023px) {
 		.hero {
-			min-height: max(640px, min(calc(100svh - 48px), 860px));
-		}
-
-		.hero::before {
-			top: -8vw;
-			right: -30vw;
-			width: 86vw;
-			height: 86vw;
-		}
-
-		.hero__atmosphere {
-			display: none;
+			min-height: auto;
 		}
 
 		.hero__inner {
@@ -240,8 +204,8 @@
 			grid-template-columns: repeat(8, minmax(0, 1fr));
 			column-gap: 20px;
 			align-content: center;
-			padding-top: 64px;
-			padding-bottom: 72px;
+			padding-top: 56px;
+			padding-bottom: 36px;
 		}
 
 		.hero__title {
@@ -274,6 +238,7 @@
 			max-width: 34rem;
 		}
 
+
 		.hero__cta {
 			min-width: 10rem;
 		}
@@ -281,38 +246,25 @@
 
 	@media (min-width: 1024px) {
 		.hero {
-			min-height: min(100svh, 900px);
-		}
-
-		.hero::before {
-			top: -18vw;
-			right: -18vw;
-			width: 72vw;
-			height: 72vw;
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			column-gap: clamp(24px, 2vw, 32px);
+			align-items: stretch;
+			height: calc(100svh - 64px);
+			min-height: 640px;
+			padding-inline: max(var(--page-padding), calc((100vw - var(--content-width)) / 2));
 		}
 
 		.hero__inner {
-			display: grid;
-			grid-template-columns: repeat(12, minmax(0, 1fr));
-			column-gap: clamp(24px, 2vw, 32px);
-			align-content: center;
-			padding-top: 96px;
-			padding-bottom: 128px;
-		}
-
-		.hero__title,
-		.hero__name,
-		.hero__description,
-		.hero__actions {
-			grid-column: 1 / span 7;
-		}
-
-		.hero__atmosphere {
-			display: none;
+			display: flex;
+			width: 100%;
+			margin: 0;
+			padding-block: 64px;
+			padding-inline: 0;
+			align-self: stretch;
 		}
 
 		.hero__title {
-			max-width: none;
 			font-size: 0.82rem;
 		}
 
@@ -332,7 +284,7 @@
 		}
 
 		.hero__description {
-			max-width: 42rem;
+			max-width: 36rem;
 		}
 
 		.hero__cta {

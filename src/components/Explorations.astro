@@ -1,0 +1,171 @@
+---
+import { explorations } from '../data/portfolio';
+---
+
+<section class="explorations section-shell" aria-labelledby="explorations-title">
+	<header class="explorations-heading">
+		<h2 id="explorations-title">Proyectos <em>y conceptos.</em></h2>
+	</header>
+
+	<div class="explorations-grid">
+		{explorations.map((project) => <article class="exploration-card">
+			<img
+				src={project.image}
+				srcset={`${project.imageSources[0]} 640w, ${project.imageSources[1]} 960w, ${project.image} 1600w`}
+				sizes="(max-width: 767px) calc(100vw - 44px), (max-width: 1439px) 50vw, 680px"
+				alt={project.imageAlt}
+				width={project.imageWidth}
+				height={project.imageHeight}
+				loading="lazy"
+				decoding="async"
+			/>
+
+			<div class="explorations-info">
+				<span class="explorations-kind">{project.kind}</span>
+				<h3>{project.name}</h3>
+				<p class="explorations-description">{project.description}</p>
+
+				{'contribution' in project && <p class="explorations-detail">
+					<strong>Participación</strong> {project.contribution}
+				</p>}
+				{'technologies' in project && <p class="explorations-detail">
+					<strong>Tecnologías</strong> {project.technologies.join(' · ')}
+				</p>}
+
+				{'url' in project && <a
+					class="explorations-link"
+					href={project.url}
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label={`Visitar el sitio de ${project.name} (se abre en una pestaña nueva)`}
+				>
+					Visitar proyecto <span aria-hidden="true">↗</span>
+				</a>}
+			</div>
+		</article>)}
+	</div>
+</section>
+
+<style>
+	.explorations {
+		padding-bottom: clamp(96px, 14vw, 160px);
+	}
+
+	.explorations-heading {
+		margin-bottom: 44px;
+	}
+
+	.explorations-heading h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(2.2rem, 5vw, 4rem);
+		font-weight: 600;
+		line-height: 1.08;
+		text-transform: uppercase;
+	}
+
+	.explorations-heading em {
+		font-family: var(--font-editorial);
+		font-size: 1.08em;
+		font-weight: 400;
+		text-transform: none;
+	}
+
+	.explorations-grid {
+		display: grid;
+		gap: 48px;
+	}
+
+	.exploration-card {
+		min-width: 0;
+		padding-top: 24px;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.exploration-card > img {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 2 / 1;
+		object-fit: cover;
+		background: var(--color-surface);
+	}
+
+	.explorations-info {
+		padding-top: 24px;
+	}
+
+	.explorations-kind {
+		color: var(--color-cyan);
+		font-size: .7rem;
+		font-weight: 700;
+		letter-spacing: .12em;
+		text-transform: uppercase;
+	}
+
+	.explorations-info h3 {
+		margin: 10px 0 12px;
+		font-family: var(--font-display);
+		font-size: clamp(1.7rem, 3vw, 2.7rem);
+		font-weight: 600;
+		line-height: 1.1;
+		overflow-wrap: anywhere;
+	}
+
+	.explorations-description,
+	.explorations-detail {
+		max-width: 34rem;
+		margin: 0;
+		color: var(--color-muted);
+		line-height: 1.65;
+	}
+
+	.explorations-detail {
+		margin-top: 10px;
+		font-size: .85rem;
+	}
+
+	.explorations-detail strong {
+		color: var(--color-text);
+		font-weight: 600;
+	}
+
+	.explorations-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		min-height: 44px;
+		margin-top: 16px;
+		padding-block: 6px;
+		border-bottom: 1px solid var(--color-cyan);
+		color: var(--color-text);
+		font-size: .8rem;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.explorations-link span {
+		color: var(--color-cyan);
+	}
+
+	.explorations-link:focus-visible {
+		border-radius: 1px;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.explorations-link:hover {
+			color: var(--color-cyan);
+		}
+	}
+
+	@media (min-width: 768px) {
+		.explorations-grid {
+			grid-template-columns: 1.2fr 1fr;
+			gap: 32px;
+		}
+
+		.exploration-card:nth-child(2) {
+			margin-top: 96px;
+		}
+	}
+</style>

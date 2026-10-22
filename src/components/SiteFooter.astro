@@ -1,15 +1,22 @@
+---
+import { contact } from '../data/portfolio';
+---
 <footer class="site-footer">
 	<div class="site-footer__inner">
 		<div class="site-footer__signature">
 			<p class="site-footer__name">Carlos Reyes</p>
 			<p class="site-footer__role">Full Stack Developer &amp; Systems Engineer</p>
 		</div>
+		<div class="site-footer__links"><a href="/sobre-mi">Sobre mí</a><a href={contact.github} target="_blank" rel="noopener noreferrer">GitHub</a><a href={contact.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a><a href={contact.cv} download>CV</a></div>
 
 		<p class="site-footer__copyright">© 2026 Carlos Reyes</p>
 	</div>
 </footer>
 
 <style>
+	.site-footer__links { grid-column:1/-1; display:flex; flex-wrap:wrap; gap:12px 26px; }
+	.site-footer__links a { display:inline-flex; align-items:center; min-height:44px; color:var(--color-muted); font-size:.78rem; text-decoration:none; }
+	.site-footer__links a:hover { color:var(--color-cyan); }
 	.site-footer__inner {
 		display: grid;
 		grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -55,6 +62,7 @@
 	}
 
 	@media (min-width: 768px) {
+		.site-footer__links { grid-column:1/-1; grid-row:2; }
 		.site-footer__inner {
 			grid-template-columns: repeat(8, minmax(0, 1fr));
 			column-gap: 20px;
@@ -74,6 +82,7 @@
 	}
 
 	@media (min-width: 1024px) {
+		.site-footer__links { grid-column:1/span 8; grid-row:2; }
 		.site-footer__inner {
 			grid-template-columns: repeat(12, minmax(0, 1fr));
 			column-gap: clamp(24px, 2vw, 32px);
